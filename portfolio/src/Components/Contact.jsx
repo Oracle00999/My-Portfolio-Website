@@ -60,7 +60,7 @@ function Contact() {
         </form>
 
         {/* Social Media Links */}
-        <div className="mt-12 flex space-x-6">
+        <div className="mt-12 mb-3 flex space-x-6">
           <a
             href="mailto:nwazotachibuike@gmail.com"
             className="p-3 bg-indigo-500 text-white rounded-full shadow-md hover:bg-indigo-600 transition duration-200 hover:animate-pulse"
