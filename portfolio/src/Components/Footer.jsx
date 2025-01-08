@@ -6,7 +6,7 @@ function Footer() {
     <footer className="bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-500 text-white py-10">
       <div className="container max-w-screen-lg mx-auto px-6 text-center">
         {/* Branding */}
-        <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-400 hover:from-purple-400 hover:to-blue-300 transition-all duration-300 hover:animate-bounce">
+        <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-400 hover:from-purple-400 hover:to-blue-300 transition-all duration-300 animate-bounce">
           ANTHONY
         </h3>
         <p className="mb-4">
