@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import profileImage from "../assets/profile.jpg";
 import { BiCertification } from "react-icons/bi";
+import Footer from "./Footer";
 
 function AboutMe() {
   return (
@@ -86,6 +87,7 @@ function AboutMe() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
