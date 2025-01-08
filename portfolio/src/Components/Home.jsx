@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import { FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa";
 import profileImage from "../assets/profile.jpg";
+import Footer from "./Footer";
 
 function Home() {
   return (
@@ -65,6 +66,7 @@ function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
