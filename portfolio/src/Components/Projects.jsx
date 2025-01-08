@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import { Component } from "react";
 import movieDatabasePic from "../assets/moviedatabase.png";
 import portfolioImg from "../assets/portfolioimg.png";
+import Footer from "./Footer";
 
 function Projects() {
   const projects = [
@@ -103,6 +104,7 @@ function Projects() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
