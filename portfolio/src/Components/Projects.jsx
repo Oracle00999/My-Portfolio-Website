@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import { Component } from "react";
 import movieDatabasePic from "../assets/moviedatabase.png";
+import portfolioImg from "../assets/portfolioimg.png";
 
 function Projects() {
   const projects = [
@@ -9,9 +10,9 @@ function Projects() {
       title: "Portfolio Website",
       description: "A personal portfolio to showcase my skills and projects.",
       tech: ["React", "Tailwind CSS"],
-      liveLink: "https://example.com",
+      liveLink: "https://my-portfolio-website-five-mauve.vercel.app/",
       codeLink: "https://github.com/username/portfolio",
-      image: "https://via.placeholder.com/400x300",
+      image: portfolioImg,
     },
     {
       title: "Movie Database APP",
