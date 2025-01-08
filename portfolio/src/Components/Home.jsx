@@ -55,7 +55,7 @@ function Home() {
 
             {/* Profile Image */}
             <div className="relative flex justify-center items-center">
-              <div className="w-80 h-80 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 shadow-2xl animate-pulse">
+              <div className="w-80 mb-7 h-80 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 shadow-2xl animate-pulse">
                 <img
                   src={profileImage}
                   alt="Profile"
