@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import { FiMail, FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
+import Footer from "./Footer";
 
 function Contact() {
   return (
@@ -96,6 +97,7 @@ function Contact() {
           </a>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
