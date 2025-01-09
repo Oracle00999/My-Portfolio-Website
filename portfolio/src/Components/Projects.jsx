@@ -7,6 +7,7 @@ import portfolioImg from "../assets/portfolioimg1.png";
 import Footer from "./Footer";
 
 function Projects() {
+  
   const projects = [
     {
       title: "Portfolio Website",
