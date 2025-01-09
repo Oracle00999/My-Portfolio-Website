@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
-import profileImage from "../assets/profile.jpg";
+// import profileImage from "../assets/profile.jpg";
+import profileImage from "../assets/tobeupdated.webp";
 import { BiCertification } from "react-icons/bi";
 import Footer from "./Footer";
 
