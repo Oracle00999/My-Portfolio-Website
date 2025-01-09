@@ -2,7 +2,8 @@ import React from "react";
 import Navbar from "./Navbar";
 import { Component } from "react";
 import movieDatabasePic from "../assets/moviedatabase.png";
-import portfolioImg from "../assets/portfolioimg.png";
+// import portfolioImg from "../assets/portfolioimg.png";
+import portfolioImg from "../assets/portfolioimg1.png";
 import Footer from "./Footer";
 
 function Projects() {
