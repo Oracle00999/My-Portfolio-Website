@@ -1,7 +1,8 @@
 import React from "react";
 import Navbar from "./Navbar";
 import { FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa";
-import profileImage from "../assets/profile.jpg";
+// import profileImage from "../assets/profile.jpg";
+import profileImage from "../assets/tobeupdated.webp";
 import Footer from "./Footer";
 
 function Home() {
