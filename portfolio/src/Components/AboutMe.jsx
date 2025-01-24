@@ -1,7 +1,8 @@
 import React from "react";
 import Navbar from "./Navbar";
 // import profileImage from "../assets/profile.jpg";
-import profileImage from "../assets/tobeupdated.webp";
+// import profileImage from "../assets/tobeupdated.webp";
+import profileImage from "../assets/profile1.jpg";
 import { BiCertification } from "react-icons/bi";
 import Footer from "./Footer";
 
@@ -17,7 +18,7 @@ function AboutMe() {
           <img
             src={profileImage}
             alt="Profile"
-            className="w-72 h-72 rounded-full border-8 border-white shadow-xl object-cover animate-pulse"
+            className="w-72 h-72 rounded-full border-8 border-white shadow-xl object-cover hover:scale-105 transition-transform duration-300 animate-pulse"
           />
         </div>
 
