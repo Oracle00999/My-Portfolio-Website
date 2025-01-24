@@ -2,7 +2,9 @@ import React from "react";
 import Navbar from "./Navbar";
 import { FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa";
 // import profileImage from "../assets/profile.jpg";
-import profileImage from "../assets/tobeupdated.webp";
+// import profileImage from "../assets/tobeupdated.webp";
+import profileImage from "../assets/profile1.jpg";
+
 import Footer from "./Footer";
 
 function Home() {
@@ -56,7 +58,7 @@ function Home() {
 
             {/* Profile Image */}
             <div className="relative flex justify-center items-center">
-              <div className="w-80 mb-7 h-80 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 shadow-2xl animate-pulse">
+              <div className="w-80 h-80 mb-7 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 shadow-2xl hover:scale-105 transition-transform duration-300 animate-pulse">
                 <img
                   src={profileImage}
                   alt="Profile"
