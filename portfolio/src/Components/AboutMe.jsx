@@ -77,7 +77,7 @@ function AboutMe() {
               </h4>
               <p className="text-gray-600 mb-4">Issued by ALX Africa</p>
               <a
-                href="certificate-link.pdf"
+                href="https://intranet.alxswe.com/certificates/fHXCP6z2BN"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-6 py-2 bg-indigo-500 text-white font-semibold rounded shadow hover:bg-indigo-600 transition-all duration-200"
