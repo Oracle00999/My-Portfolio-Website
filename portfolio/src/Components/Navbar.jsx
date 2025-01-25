@@ -118,7 +118,7 @@ function Navbar() {
               </Link>
             ))}
             <a
-              href="resume.pdf"
+              href="https://docs.google.com/document/d/1JqUMGbif6FttKSvL1BeFhYn9wt0feWEi-Gx1UVZI0NE/edit?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="block px-4 py-2 text-center bg-white text-indigo-600 font-semibold rounded hover:bg-indigo-100 transition-all duration-200"
