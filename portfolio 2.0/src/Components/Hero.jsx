@@ -31,7 +31,8 @@ const Hero = () => {
               View My Work
             </a>
             <a
-              href="#contact"
+              href="https://docs.google.com/document/d/1JqUMGbif6FttKSvL1BeFhYn9wt0feWEi-Gx1UVZI0NE/edit?usp=sharing"
+              target="_blank"
               className="px-6 py-3 border border-indigo-600 text-indigo-400 rounded-lg hover:bg-indigo-600 hover:text-white transition duration-300"
             >
               View RESUME
