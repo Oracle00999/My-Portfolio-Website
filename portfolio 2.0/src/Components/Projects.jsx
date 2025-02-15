@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import movieDatabasePic from "../assets/movieDatabase.png";
+import movieDatabasePic from "../assets/moviedatabase.png";
 
 const projects = [
   {
