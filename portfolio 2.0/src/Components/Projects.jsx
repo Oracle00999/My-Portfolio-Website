@@ -13,16 +13,16 @@ const projects = [
     githubLink: "https://github.com/Oracle00999/ALX_CAPSTONE_PROJECT.git",
     image: movieDatabasePic, // Replace with your project screenshot
   },
-  {
-    id: 2,
-    title: "Project 2",
-    description:
-      "A brief description of what the project does and its purpose.",
-    technologies: ["JavaScript", "CSS", "API Integration"],
-    demoLink: "https://example.com",
-    githubLink: "https://github.com/yourusername/project2",
-    image: "https://via.placeholder.com/400", // Replace with your project screenshot
-  },
+  // {
+  //   id: 2,
+  //   title: "Project 2",
+  //   description:
+  //     "A brief description of what the project does and its purpose.",
+  //   technologies: ["JavaScript", "CSS", "API Integration"],
+  //   demoLink: "https://example.com",
+  //   githubLink: "https://github.com/yourusername/project2",
+  //   image: "https://via.placeholder.com/400", // Replace with your project screenshot
+  // },
 ];
 
 const Projects = () => {
