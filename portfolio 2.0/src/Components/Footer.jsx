@@ -59,7 +59,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-gray-300 hover:text-indigo-400 transition duration-300"
             >
-              <i className="fab fa-envelope text-2xl aria-hidden='true'"></i>
+              <i className="fas fa-envelope text-2xl" aria-hidden="true"></i>
             </a>
           </motion.div>
           {/* Copyright Notice */}
