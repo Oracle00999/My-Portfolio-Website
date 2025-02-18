@@ -8,10 +8,14 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   const navLinks = [
-    { id: 1, name: "About", href: "#about" },
-    { id: 2, name: "Projects", href: "#projects" },
-    { id: 3, name: "Contact", href: "#contact" },
+    { id: 1, name: "About", href: "#about", icon: "fas fa-user" },
+    { id: 2, name: "Projects", href: "#projects", icon: "fas fa-code" },
+    { id: 3, name: "Contact", href: "#contact", icon: "fas fa-envelope" },
   ];
 
   return (
@@ -68,6 +72,7 @@ const Navbar = () => {
                 href={link.href}
                 className="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-300"
               >
+                <i className={`${link.icon} mr-2`}></i>
                 {link.name}
               </a>
             ))}
@@ -90,8 +95,10 @@ const Navbar = () => {
                 <a
                   key={link.id}
                   href={link.href}
+                  onClick={closeMenu} // Close menu when a link is clicked
                   className="text-gray-300 hover:text-indigo-400 block px-3 py-2 rounded-md text-base font-medium transition duration-300"
                 >
+                  <i className={`${link.icon} mr-2`}></i>
                   {link.name}
                 </a>
               ))}
