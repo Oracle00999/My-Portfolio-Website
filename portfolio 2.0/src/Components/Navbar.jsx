@@ -70,7 +70,7 @@ const Navbar = () => {
               <a
                 key={link.id}
                 href={link.href}
-                className="text-gray-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-300"
+                className="text-indigo-400 border-b-2 border-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-300 hover:text-purple-500 hover:border-purple-500"
               >
                 <i className={`${link.icon} mr-2`}></i>
                 {link.name}
@@ -95,8 +95,8 @@ const Navbar = () => {
                 <a
                   key={link.id}
                   href={link.href}
-                  onClick={closeMenu} // Close menu when a link is clicked
-                  className="text-gray-300 hover:text-indigo-400 block px-3 py-2 rounded-md text-base font-medium transition duration-300"
+                  onClick={closeMenu}
+                  className="text-indigo-400 border-b-2 border-indigo-400 block px-3 py-2 rounded-md text-base font-medium transition duration-300 hover:text-purple-500 hover:border-purple-500"
                 >
                   <i className={`${link.icon} mr-2`}></i>
                   {link.name}
