@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import movieDatabasePic from "../assets/moviedatabase.png";
+import LandingPagePics from "../assets/landingpage.jpg";
+
 
 const projects = [
   {
@@ -12,6 +14,16 @@ const projects = [
     demoLink: "https://movie-database-57i3.vercel.app/",
     githubLink: "https://github.com/Oracle00999/ALX_CAPSTONE_PROJECT.git",
     image: movieDatabasePic, // Replace with your project screenshot
+  },
+  {
+    id: 2,
+    title: "Landing Page Website",
+    description:
+      "A sleek and responsive landing page designed to captivate users, featuring modern UI/UX principles, smooth animations, and a focus on driving conversions.",
+    technologies: ["React", "Tailwind CSS"],
+    demoLink: "https://landingpage-sigma-hazel.vercel.app/",
+    githubLink: "https://github.com/Oracle00999/Projects.git",
+    image: LandingPagePics, // Replace with your project screenshot
   },
   // {
   //   id: 2,
