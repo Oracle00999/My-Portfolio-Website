@@ -1,7 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-// import profileImage from "../assets/tobeupdated.webp";
-import profileImage from "../assets/profile.jpg";
 
 const Hero = () => {
   return (
@@ -23,6 +21,17 @@ const Hero = () => {
           <p className="mt-4 text-lg text-gray-300">
             Front-End Developer | Building Beautiful Web Experiences
           </p>
+          <p className="mt-4 text-gray-300">
+            I specialize in creating responsive, user-friendly, and visually
+            stunning web applications. With a passion for clean code and
+            innovative design, I bring ideas to life using modern technologies
+            like React, Tailwind CSS, and Framer Motion.
+          </p>
+          <p className="mt-4 text-gray-300">
+            Whether it's crafting seamless user interfaces or optimizing
+            performance, I’m dedicated to delivering high-quality solutions that
+            make an impact.
+          </p>
           <div className="mt-8 flex space-x-4 justify-center md:justify-start">
             <a
               href="#projects"
@@ -31,18 +40,11 @@ const Hero = () => {
               View My Work
             </a>
             <a
-              href="https://docs.google.com/document/d/1JqUMGbif6FttKSvL1BeFhYn9wt0feWEi-Gx1UVZI0NE/edit?usp=sharing"
-              target="_blank"
+              href="#contact"
               className="px-6 py-3 border border-indigo-600 text-indigo-400 rounded-lg hover:bg-indigo-600 hover:text-white transition duration-300"
             >
               View RESUME
             </a>
-            {/* <a
-              href="#projects"
-              className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-300"
-            >
-              View RESUME
-            </a> */}
           </div>
           {/* Social Links */}
           <div className="mt-8 flex space-x-4 justify-center md:justify-start">
@@ -80,11 +82,23 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="hidden md:flex justify-center"
         >
-          <img
-            src={profileImage} // Replace with your image or illustration
-            alt="Nwazota Anthony"
-            className="w-60 h-60 md:w-64 md:h-64 lg:w-100 lg:h-100 rounded-full object-cover border-8 border-white shadow-2xl"
-          />
+          {/* Replace this with your preferred visual element */}
+          <div className="w-64 h-64 lg:w-80 lg:h-80 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-32 w-32 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+              />
+            </svg>
+          </div>
         </motion.div>
       </div>
     </section>
