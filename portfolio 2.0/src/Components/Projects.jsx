@@ -9,7 +9,7 @@ const projects = [
     description:
       "This app allows users to easily search for movies and get detailed information about them",
     technologies: ["React", "Tailwind CSS"],
-    demoLink: "https://my-portfolio-website-five-mauve.vercel.app/",
+    demoLink: "https://movie-database-57i3.vercel.app/",
     githubLink: "https://github.com/Oracle00999/ALX_CAPSTONE_PROJECT.git",
     image: movieDatabasePic, // Replace with your project screenshot
   },
