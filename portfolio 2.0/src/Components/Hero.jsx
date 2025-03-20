@@ -25,7 +25,7 @@ const Hero = () => {
             I specialize in creating responsive, user-friendly, and visually
             stunning web applications. With a passion for clean code and
             innovative design, I bring ideas to life using modern technologies
-            like React, Tailwind CSS, and Framer Motion.
+            like React, Tailwind CSS etc.
           </p>
           <p className="mt-4 text-gray-300">
             Whether it's crafting seamless user interfaces or optimizing
