@@ -1,7 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-// import profileImage from "../assets/tobeupdated.webp";
-import profileImage from "../assets/profile.jpg";
 
 const About = () => {
   const skills = [
@@ -97,11 +95,23 @@ const About = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="hidden md:flex justify-center"
           >
-            <img
-              src={profileImage} // Replace with your photo or illustration
-              alt="Your Name"
-              className="w-80 h-80 md:w-64 md:h-64 lg:w-100 lg:h-100 rounded-full object-cover border-8 border-white shadow-2xl"
-            />
+            {/* Replace this with your preferred visual element */}
+            <div className="w-64 h-64 lg:w-80 lg:h-80 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-32 w-32 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                />
+              </svg>
+            </div>
           </motion.div>
         </div>
       </div>
