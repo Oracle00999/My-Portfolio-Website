@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import TypingEffect from "./Typingeffect";
 
 const Hero = () => {
   return (
@@ -18,20 +19,23 @@ const Hero = () => {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
             Hi, I’m Nwazota Chibuike
           </h1>
+          <TypingEffect />
           <p className="mt-4 text-lg text-gray-300">
-            Front-End Developer | Building Beautiful Web Experiences
+            Full-Stack Developer | Building End-to-End Web Solutions
           </p>
           <p className="mt-4 text-gray-300">
-            I specialize in creating responsive, user-friendly, and visually
-            stunning web applications. With a passion for clean code and
-            innovative design, I bring ideas to life using modern technologies
-            like React, Tailwind CSS etc.
+            I specialize in developing sleek, responsive, and user-friendly
+            applications that work seamlessly across the front end and back end.
+            With expertise in React, Tailwind CSS, Node.js, Express, and
+            databases like MongoDB and SQL, I bring ideas to life with modern
+            technologies.
           </p>
           <p className="mt-4 text-gray-300">
-            Whether it's crafting seamless user interfaces or optimizing
-            performance, I’m dedicated to delivering high-quality solutions that
-            make an impact.
+            Whether it’s crafting engaging user interfaces or designing scalable
+            backend systems, I’m dedicated to delivering high-quality solutions
+            that truly make an impact.
           </p>
+
           <div className="mt-8 flex space-x-4 justify-center md:justify-start">
             <a
               href="#projects"
@@ -40,13 +44,15 @@ const Hero = () => {
               View My Work
             </a>
             <a
-              href="https://docs.google.com/document/d/1JqUMGbif6FttKSvL1BeFhYn9wt0feWEi-Gx1UVZI0NE/edit?usp=sharing"
+              href="https://docs.google.com/document/d/1vZN6ffrsmkzELsP_GWMqNZDffsLhgE1BVhxEGWjRcTE/edit?usp=sharing"
               target="_blank"
+              rel="noopener noreferrer"
               className="px-6 py-3 border border-indigo-600 text-indigo-400 rounded-lg hover:bg-indigo-600 hover:text-white transition duration-300"
             >
               View RESUME
             </a>
           </div>
+
           {/* Social Links */}
           <div className="mt-8 flex space-x-4 justify-center md:justify-start">
             <a
@@ -83,7 +89,6 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="hidden md:flex justify-center"
         >
-          {/* Replace this with your preferred visual element */}
           <div className="w-64 h-64 lg:w-80 lg:h-80 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
             <svg
               xmlns="http://www.w3.org/2000/svg"

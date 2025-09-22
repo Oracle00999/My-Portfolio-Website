@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import movieDatabasePic from "../assets/moviedatabase.png";
 import LandingPagePics from "../assets/landingpage.jpg";
-
 
 const projects = [
   {
@@ -13,70 +12,113 @@ const projects = [
     technologies: ["React", "Tailwind CSS"],
     demoLink: "https://movie-database-57i3.vercel.app/",
     githubLink: "https://github.com/Oracle00999/ALX_CAPSTONE_PROJECT.git",
-    image: movieDatabasePic, // Replace with your project screenshot
+    image: movieDatabasePic,
   },
   {
     id: 2,
     title: "Landing Page Website",
     description:
-      "A sleek and responsive landing page designed to captivate users, featuring modern UI/UX principles, smooth animations, and a focus on driving conversions.",
+      "A sleek and responsive landing page designed to captivate users.",
     technologies: ["React", "Tailwind CSS"],
     demoLink: "https://landingpage-sigma-hazel.vercel.app/",
     githubLink: "https://github.com/Oracle00999/Projects.git",
-    image: LandingPagePics, // Replace with your project screenshot
+    image: LandingPagePics,
   },
-  // {
-  //   id: 2,
-  //   title: "Project 2",
-  //   description:
-  //     "A brief description of what the project does and its purpose.",
-  //   technologies: ["JavaScript", "CSS", "API Integration"],
-  //   demoLink: "https://example.com",
-  //   githubLink: "https://github.com/yourusername/project2",
-  //   image: "https://via.placeholder.com/400", // Replace with your project screenshot
-  // },
 ];
 
-const Projects = () => {
+// ReadMore Component for description
+const ReadMore = ({ text, maxChars = 80 }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  if (text.length <= maxChars) {
+    return <p className="mt-2 text-gray-600">{text}</p>;
+  }
+
   return (
-    <section id="projects" className="py-26 bg-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <p className="mt-2 text-gray-600">
+      {isExpanded ? text : `${text.substring(0, maxChars)}... `}
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="text-indigo-500 hover:underline"
+      >
+        {isExpanded ? "Read less" : "Read more"}
+      </button>
+    </p>
+  );
+};
+
+const Projects = () => {
+  const scrollRef = useRef(null);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -400 : 400,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  return (
+    <section id="projects" className="py-20 bg-gray-950 relative">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent text-center mb-12 animate-bounce"
+          className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent text-center mb-12"
         >
           My Projects
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        {/* Scroll Buttons */}
+        <button
+          onClick={() => scroll("left")}
+          className="absolute left-6 top-1/2 -translate-y-1/2 bg-indigo-600 text-white p-3 rounded-full hover:bg-indigo-700 shadow-lg z-10"
+        >
+          ◀
+        </button>
+        <button
+          onClick={() => scroll("right")}
+          className="absolute right-6 top-1/2 -translate-y-1/2 bg-indigo-600 text-white p-3 rounded-full hover:bg-indigo-700 shadow-lg z-10"
+        >
+          ▶
+        </button>
+
+        {/* Horizontal Scroll */}
+        <div
+          ref={scrollRef}
+          className="flex space-x-8 overflow-x-auto scrollbar-hide scroll-smooth pr-1"
+        >
           {projects.map((project) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+              className="w-[350px] h-[510px] flex-shrink-0 bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300"
             >
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-48 object-cover"
+                className="w-full h-60 object-cover"
               />
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 text-transparent bg-clip-text">
-                  {project.title}
-                </h3>
-                <p className="mt-2 text-gray-600">{project.description}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.technologies.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+              <div className="p-6 flex flex-col justify-between h-[calc(100%-240px)]">
+                <div>
+                  <h3 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 text-transparent bg-clip-text">
+                    {project.title}
+                  </h3>
+                  <ReadMore text={project.description} maxChars={80} />
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {project.technologies.map((tech, index) => (
+                      <span
+                        key={index}
+                        className="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm font-medium"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
                 <div className="mt-6 flex space-x-4">
                   <a

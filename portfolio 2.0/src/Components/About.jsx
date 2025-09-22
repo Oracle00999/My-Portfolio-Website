@@ -3,13 +3,51 @@ import { motion } from "framer-motion";
 
 const About = () => {
   const skills = [
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "React",
-    "Tailwind CSS",
-    "Git",
-    "Responsive Design",
+    {
+      name: "HTML",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+    },
+    {
+      name: "CSS",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+    },
+    {
+      name: "JavaScript",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+    },
+    {
+      name: "React",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    },
+    {
+      name: "Tailwind CSS",
+      logo: "https://cdn.simpleicons.org/tailwindcss/06B6D4",
+    },
+
+    {
+      name: "Git",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+    },
+    {
+      name: "Responsive Design",
+      logo: "https://img.icons8.com/?size=512&id=22180&format=png",
+    }, // placeholder icon
+    {
+      name: "Nodejs",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    },
+    {
+      name: "Express",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+    },
+    {
+      name: "MongoDB",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+    },
+    {
+      name: "MySql",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+    },
   ];
 
   return (
@@ -24,30 +62,32 @@ const About = () => {
             className="text-center md:text-left"
           >
             <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent animate-bounce">
-              About Me
+              Full-Stack Developer
             </h2>
             <p className="mt-4 text-lg text-gray-700">
-              Hi, I’m Chibuike, a passionate front-end developer with a
-              background in computer science. I thrive on creating sleek,
-              responsive, and user-friendly web applications that bring ideas to
-              life. My journey has been shaped by hard work and resilience,
-              especially during my time in the ALX Frontend Program, where I
-              honed my skills in JavaScript, React, and modern web development
-              practices. Completing the program was no walk in the park, but it
-              taught me perseverance and the value of continuous learning.
+              Hi, I’m Chibuike, a passionate full-stack developer with a
+              background in computer science. I thrive on building sleek,
+              responsive, and user-friendly applications that work seamlessly
+              from the front end to the back end. My journey has been shaped by
+              hard work and resilience, especially during my time in the ALX
+              Frontend Program and my continued growth in backend development
+              with Node.js, Express, and databases like MongoDB and SQL. These
+              experiences taught me perseverance, problem-solving, and the value
+              of continuous learning.
             </p>
             <p className="mt-4 text-lg text-gray-700">
               When I’m not immersed in coding, you’ll find me exploring my other
               passions: gaming, football, and indulging in delicious meals.
               These hobbies keep me balanced and energized, fueling my
-              creativity for tackling complex coding challenges. I’m always
+              creativity for tackling complex software challenges. I’m always
               eager to learn new technologies and push the boundaries of what’s
               possible in web development.
             </p>
+
             {/* Certification Link */}
             <div className="mt-6">
               <a
-                href="https://intranet.alxswe.com/certificates/fHXCP6z2BN" // Replace with your actual certification link
+                href="https://intranet.alxswe.com/certificates/fHXCP6z2BN"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-300"
@@ -69,19 +109,27 @@ const About = () => {
                 </svg>
               </a>
             </div>
+
             {/* Skills Section */}
-            <div className="mt-8">
-              <h3 className="text-xl font-semibold text-gray-800">My Skills</h3>
-              <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-10">
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                My Skills
+              </h3>
+              <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                 {skills.map((skill, index) => (
                   <motion.span
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="px-4 py-2 bg-gray-200 text-gray-800 rounded-full text-sm"
+                    transition={{ duration: 0.4, delay: index * 0.08 }}
+                    className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 shadow-sm text-gray-800 rounded-full text-sm font-medium hover:bg-indigo-50 transition"
                   >
-                    {skill}
+                    <img
+                      src={skill.logo}
+                      alt={skill.name}
+                      className="w-5 h-5"
+                    />
+                    {skill.name}
                   </motion.span>
                 ))}
               </div>
@@ -95,7 +143,6 @@ const About = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="hidden md:flex justify-center"
           >
-            {/* Replace this with your preferred visual element */}
             <div className="w-64 h-64 lg:w-80 lg:h-80 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
