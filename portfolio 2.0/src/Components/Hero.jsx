@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen bg-gray-950 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 md:pt-24" // Added top padding
+      className="min-h-screen bg-gray-950 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 md:pt-24 pb-8 sm:pb-12 md:pb-0" // Added bottom padding for mobile
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         {/* Left Column: Text Content */}
