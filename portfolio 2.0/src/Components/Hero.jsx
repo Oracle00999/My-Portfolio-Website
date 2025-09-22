@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="h-screen bg-gray-950 flex items-center justify-center px-4 sm:px-6 lg:px-8"
+      className="min-h-screen bg-gray-950 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 md:pt-24" // Added top padding
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         {/* Left Column: Text Content */}
@@ -16,8 +16,8 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="text-center md:text-left"
         >
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
-            Hi, I’m Nwazota Chibuike
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold leading-tight sm:leading-snug md:leading-snug break-words bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
+            Hi, I'm Nwazota Chibuike
           </h1>
           <TypingEffect />
           <p className="mt-4 text-lg text-gray-300">
@@ -31,15 +31,15 @@ const Hero = () => {
             technologies.
           </p>
           <p className="mt-4 text-gray-300">
-            Whether it’s crafting engaging user interfaces or designing scalable
-            backend systems, I’m dedicated to delivering high-quality solutions
+            Whether it's crafting engaging user interfaces or designing scalable
+            backend systems, I'm dedicated to delivering high-quality solutions
             that truly make an impact.
           </p>
 
-          <div className="mt-8 flex space-x-4 justify-center md:justify-start">
+          <div className="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
             <a
               href="#projects"
-              className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-300"
+              className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-300 text-center"
             >
               View My Work
             </a>
@@ -47,7 +47,7 @@ const Hero = () => {
               href="https://docs.google.com/document/d/1vZN6ffrsmkzELsP_GWMqNZDffsLhgE1BVhxEGWjRcTE/edit?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 border border-indigo-600 text-indigo-400 rounded-lg hover:bg-indigo-600 hover:text-white transition duration-300"
+              className="px-6 py-3 border border-indigo-600 text-indigo-400 rounded-lg hover:bg-indigo-600 hover:text-white transition duration-300 text-center"
             >
               View RESUME
             </a>
