@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState("About");
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -12,6 +13,11 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
+  const handleLinkClick = (name) => {
+    setActiveLink(name);
+    closeMenu();
+  };
+
   const navLinks = [
     { id: 1, name: "About", href: "#about", icon: "fas fa-user" },
     { id: 2, name: "Projects", href: "#projects", icon: "fas fa-code" },
@@ -19,13 +25,12 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-gray-950 text-gray-100 shadow-lg fixed w-full z-50 ">
+    <nav className="bg-[#0a192f] text-[#ccd6f6] shadow-lg fixed w-full z-50 border-b border-[#112240]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
-          {/* Logo with Gradient */}
           <a
             href="/"
-            className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent"
+            className="text-xl font-bold bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] bg-clip-text text-transparent hover:from-[#ff8c61] hover:to-[#ffa07a] transition-all duration-300"
           >
             ANTHONY
           </a>
@@ -35,7 +40,7 @@ const Navbar = () => {
             <button
               onClick={toggleMenu}
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-indigo-400 hover:bg-gray-800 focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md text-[#8892b0] hover:text-[#ff6b35] hover:bg-[#112240] focus:outline-none transition duration-300"
             >
               <svg
                 className="h-6 w-6"
@@ -70,7 +75,12 @@ const Navbar = () => {
               <a
                 key={link.id}
                 href={link.href}
-                className="text-indigo-400 border-b-2 border-indigo-400 px-3 py-2 rounded-md text-sm font-medium transition duration-300 hover:text-purple-500 hover:border-purple-500"
+                onClick={() => handleLinkClick(link.name)}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 border-b-2 ${
+                  activeLink === link.name
+                    ? "text-[#ff6b35] border-[#ff6b35] bg-[#112240]"
+                    : "text-[#ccd6f6] border-transparent hover:text-[#ff6b35] hover:border-[#ff6b35]"
+                }`}
               >
                 <i className={`${link.icon} mr-2`}></i>
                 {link.name}
@@ -88,17 +98,21 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="sm:hidden bg-gray-900"
+            className="sm:hidden bg-[#112240] border-t border-[#233554]"
           >
-            <div className="px-2 pt-2 pb-4 space-y-1">
+            <div className="px-2 pt-2 pb-4 space-y-2">
               {navLinks.map((link) => (
                 <a
                   key={link.id}
                   href={link.href}
-                  onClick={closeMenu}
-                  className="text-indigo-400 border-b-2 border-indigo-400 block px-3 py-2 rounded-md text-base font-medium transition duration-300 hover:text-purple-500 hover:border-purple-500"
+                  onClick={() => handleLinkClick(link.name)}
+                  className={`block px-4 py-3 rounded-md text-base font-medium transition-all duration-300 ${
+                    activeLink === link.name
+                      ? "text-[#ff6b35] bg-[#0a192f] border-l-4 border-[#ff6b35]"
+                      : "text-[#ccd6f6] hover:text-[#ff6b35] hover:bg-[#0a192f]"
+                  }`}
                 >
-                  <i className={`${link.icon} mr-2`}></i>
+                  <i className={`${link.icon} mr-3`}></i>
                   {link.name}
                 </a>
               ))}

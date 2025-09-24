@@ -6,9 +6,9 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen bg-gray-950 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 md:pt-24 pb-8 sm:pb-12 md:pb-0" // Added bottom padding for mobile
+      className="min-h-screen bg-[#0a192f] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 md:pt-24 pb-8 sm:pb-12 md:pb-0"
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Left Column: Text Content */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -16,30 +16,31 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="text-center md:text-left"
         >
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold leading-tight sm:leading-snug md:leading-snug break-words bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight sm:leading-snug md:leading-snug break-words bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] bg-clip-text text-transparent">
             Hi, I'm Nwazota Chibuike
           </h1>
           <TypingEffect />
-          <p className="mt-4 text-lg text-gray-300">
+          <p className="mt-6 text-lg text-[#ccd6f6] font-medium">
             Full-Stack Developer | Building End-to-End Web Solutions
           </p>
-          <p className="mt-4 text-gray-300">
+          <p className="mt-4 text-[#8892b0] leading-relaxed">
             I specialize in developing sleek, responsive, and user-friendly
             applications that work seamlessly across the front end and back end.
             With expertise in React, Tailwind CSS, Node.js, Express, and
             databases like MongoDB and SQL, I bring ideas to life with modern
             technologies.
           </p>
-          <p className="mt-4 text-gray-300">
+          <p className="mt-4 text-[#8892b0] leading-relaxed">
             Whether it's crafting engaging user interfaces or designing scalable
             backend systems, I'm dedicated to delivering high-quality solutions
             that truly make an impact.
           </p>
 
-          <div className="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
+          {/* CTA Buttons */}
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <a
               href="#projects"
-              className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-300 text-center"
+              className="px-8 py-3 bg-[#ff6b35] text-[#0a192f] font-semibold rounded-lg hover:bg-[#ff8c61] transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl text-center"
             >
               View My Work
             </a>
@@ -47,38 +48,42 @@ const Hero = () => {
               href="https://docs.google.com/document/d/1vZN6ffrsmkzELsP_GWMqNZDffsLhgE1BVhxEGWjRcTE/edit?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 border border-indigo-600 text-indigo-400 rounded-lg hover:bg-indigo-600 hover:text-white transition duration-300 text-center"
+              className="px-8 py-3 border-2 border-[#ff6b35] text-[#ff6b35] font-semibold rounded-lg hover:bg-[#ff6b35] hover:text-[#0a192f] transform hover:-translate-y-1 transition-all duration-300 text-center"
             >
               View RESUME
             </a>
           </div>
 
           {/* Social Links */}
-          <div className="mt-8 flex space-x-4 justify-center md:justify-start">
-            <a
-              href="https://github.com/Oracle00999"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-indigo-400 transition duration-300"
-            >
-              <i className="fab fa-github text-2xl"></i>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/nwazotaanthony/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-indigo-400 transition duration-300"
-            >
-              <i className="fab fa-linkedin text-2xl"></i>
-            </a>
-            <a
-              href="https://x.com/TekhTony"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-indigo-400 transition duration-300"
-            >
-              <i className="fab fa-twitter text-2xl"></i>
-            </a>
+          <div className="mt-8 flex space-x-6 justify-center md:justify-start">
+            {[
+              {
+                href: "https://github.com/Oracle00999",
+                icon: "fab fa-github",
+                label: "GitHub",
+              },
+              {
+                href: "https://www.linkedin.com/in/nwazotaanthony/",
+                icon: "fab fa-linkedin",
+                label: "LinkedIn",
+              },
+              {
+                href: "https://x.com/TekhTony",
+                icon: "fab fa-twitter",
+                label: "Twitter",
+              },
+            ].map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#8892b0] hover:text-[#ff6b35] transform hover:-translate-y-1 transition-all duration-300"
+                aria-label={social.label}
+              >
+                <i className={`${social.icon} text-2xl`}></i>
+              </a>
+            ))}
           </div>
         </motion.div>
 
@@ -87,23 +92,52 @@ const Hero = () => {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="hidden md:flex justify-center"
+          className="hidden md:flex justify-center items-center"
         >
-          <div className="w-64 h-64 lg:w-80 lg:h-80 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-32 w-32 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          <div className="relative">
+            {/* Main Circle */}
+            <div className="w-72 h-72 bg-gradient-to-br from-[#ff6b35] to-[#ff8c61] rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
+              {/* Animated Background Pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-white rounded-full"></div>
+                <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-white rounded-full"></div>
+              </div>
+
+              {/* Code Icon */}
+              <div className="relative z-10">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-24 w-24 text-[#0a192f]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            {/* Floating Elements */}
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="absolute -top-4 -right-4 w-16 h-16 bg-[#112240] rounded-full flex items-center justify-center shadow-lg border border-[#233554]"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-              />
-            </svg>
+              <i className="fab fa-react text-[#ff6b35] text-xl"></i>
+            </motion.div>
+
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+              className="absolute -bottom-6 -left-6 w-20 h-20 bg-[#112240] rounded-full flex items-center justify-center shadow-lg border border-[#233554]"
+            >
+              <i className="fab fa-js-square text-[#ff6b35] text-2xl"></i>
+            </motion.div>
           </div>
         </motion.div>
       </div>

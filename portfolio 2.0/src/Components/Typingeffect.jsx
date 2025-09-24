@@ -54,7 +54,7 @@ const TypingEffect = () => {
   return (
     <motion.span
       key={roles[index]}
-      className="mt-3 block text-xl sm:text-2xl lg:text-3xl font-semibold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent"
+      className="mt-3 block text-xl sm:text-2xl lg:text-3xl font-semibold bg-[#ff6b35]  bg-clip-text text-transparent"
     >
       {roles[index].substring(0, subIndex)}
       <span className="animate-pulse">|</span>
