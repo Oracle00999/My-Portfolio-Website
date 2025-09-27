@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const roles = [
-  "A Backend Developer",
   "A Frontend Developer",
+  "A Backend Developer",
   "A Full-Stack Developer",
   "A Problem Solver",
   "A Tech Enthusiast",

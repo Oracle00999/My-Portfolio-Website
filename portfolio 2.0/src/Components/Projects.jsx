@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import movieDatabasePic from "../assets/moviedatabase.png";
 import LandingPagePics from "../assets/landingpage.jpg";
+import portfolioImg from "../assets/portfolioImg.png";
 
 const projects = [
   {
@@ -29,6 +30,21 @@ const projects = [
     githubLink: "https://github.com/Oracle00999/Projects.git",
     image: LandingPagePics,
   },
+  // {
+  //   id: 3,
+  //   title: "Portfolio Website",
+  //   description:
+  //     "Designed and developed a responsive single-page portfolio to showcase my projects and skills. Built with React, Tailwind CSS, featuring smooth scrolling navigation, animations with Framer Motion, and a modern UI/UX layout. Optimized for performance and mobile devices.",
+  //   technologies: [
+  //     "React.js",
+  //     "Tailwind CSS",
+  //     "Responsive Design",
+  //     "Framer Motion",
+  //   ],
+  //   demoLink: "https://nwazota-anthony.vercel.app/",
+  //   githubLink: "https://github.com/Oracle00999/My-Portfolio-Website.git",
+  //   image: portfolioImg,
+  // },
 ];
 
 // ReadMore Component
