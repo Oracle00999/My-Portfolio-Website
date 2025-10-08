@@ -2,7 +2,8 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import movieDatabasePic from "../assets/moviedatabase.png";
 import LandingPagePics from "../assets/landingpage.jpg";
-import portfolioImg from "../assets/portfolioImg.png";
+// import portfolioImg from "../assets/portfolioImg.png";
+import BlogAppPic from "../assets/nodejsblog.png";
 
 const projects = [
   {
@@ -30,8 +31,26 @@ const projects = [
     githubLink: "https://github.com/Oracle00999/Projects.git",
     image: LandingPagePics,
   },
+  {
+    id: 3,
+    title: "Dynamic Node.js Blog Application",
+    description:
+      "A full-featured blog platform built with Node.js, Express, MongoDB, and EJS. Supports creating, editing, and deleting posts with a secure admin dashboard. Includes session-based authentication, environment configuration, and deployment on Render.",
+    technologies: [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "EJS",
+      "Mongoose",
+      "Render Deployment",
+    ],
+    demoLink: "https://nodejs-blog-app-23ky.onrender.com",
+    githubLink: "https://github.com/Oracle00999/Nodejs-blog-app",
+    image: BlogAppPic,
+  },
+
   // {
-  //   id: 3,
+  //   id: 4,
   //   title: "Portfolio Website",
   //   description:
   //     "Designed and developed a responsive single-page portfolio to showcase my projects and skills. Built with React, Tailwind CSS, featuring smooth scrolling navigation, animations with Framer Motion, and a modern UI/UX layout. Optimized for performance and mobile devices.",
