@@ -189,7 +189,7 @@ const Projects = () => {
                   {project.title}
                 </h3>
 
-                <ReadMore text={project.description} maxChars={180} />
+                <ReadMore text={project.description} maxChars={100} />
 
                 {/* Technologies */}
                 <div className="mt-4 flex flex-wrap gap-2">
