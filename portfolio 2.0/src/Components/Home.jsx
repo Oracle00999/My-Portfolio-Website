@@ -5,6 +5,7 @@ import About from "./About";
 import Projects from "./Projects";
 import Contact from "./Contact";
 import Footer from "./Footer";
+import SkillsMarqueeWithIcons from "./SkillsMarquee";
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
       <About />
       <Projects />
       <Contact />
+      <SkillsMarqueeWithIcons />
       <Footer />
     </>
   );
