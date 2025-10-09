@@ -32,7 +32,7 @@ const Navbar = () => {
             href="/"
             className="text-xl font-bold bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] bg-clip-text text-transparent hover:from-[#ff8c61] hover:to-[#ffa07a] transition-all duration-300"
           >
-            ANTHONY
+            <span className="font-mono ">{`> ANTHONY`}</span>
           </a>
 
           {/* Hamburger Menu (Mobile) */}

@@ -257,3 +257,26 @@ const Projects = () => {
 };
 
 export default Projects;
+{
+  /* Custom Scrollbar Hide */
+}
+<style jsx>{`
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ✅ Fix vertical scroll conflict */
+  .scrollbar-hide {
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: none;
+  }
+
+  /* ✅ Smooth touchpad/mobile scrolling */
+  .scrollbar-hide {
+    touch-action: pan-y;
+  }
+`}</style>;

@@ -1,18 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const SkillsMarqueeWithIcons = () => {
-  const [screenWidth, setScreenWidth] = useState(0);
-  const marqueeRef = useRef(null);
-  const isInView = useInView(marqueeRef, { once: false, amount: 0.3 }); // triggers when 30% in view
-
-  useEffect(() => {
-    setScreenWidth(window.innerWidth);
-    const handleResize = () => setScreenWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   const skillsWithIcons = [
     { name: "React", icon: "⚛️" },
     { name: "JavaScript", icon: "🟨" },
@@ -30,52 +20,51 @@ const SkillsMarqueeWithIcons = () => {
     { name: "CSS3", icon: "🎨" },
   ];
 
-  const baseDuration = screenWidth < 768 ? 18 : 25;
-  const travelDistance = screenWidth * 1.2;
+  // Controls and viewport detection
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.3 });
+
+  React.useEffect(() => {
+    if (inView) {
+      controls.start({
+        x: ["0%", "-50%"],
+        transition: {
+          x: {
+            repeat: Infinity,
+            repeatType: "loop",
+            duration: 35,
+            ease: "linear",
+          },
+        },
+      });
+    } else {
+      controls.stop();
+    }
+  }, [inView, controls]);
 
   return (
     <div
-      ref={marqueeRef}
-      className="w-full py-8 bg-[#112240] border-y border-[#233554] overflow-hidden relative"
+      ref={ref}
+      className="w-full py-6 bg-[#112240] border-y border-[#233554] overflow-hidden"
     >
-      {isInView && (
+      <div className="relative flex">
         <motion.div
           className="flex whitespace-nowrap"
-          animate={{
-            x: [0, -travelDistance, 0],
-          }}
-          transition={{
-            x: {
-              duration: baseDuration,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatType: "loop",
-            },
-          }}
+          animate={controls}
+          initial={{ x: "0%" }}
         >
-          {skillsWithIcons.map((skill, index) => (
-            <motion.div
+          {/* Double the skills for a seamless infinite scroll */}
+          {[...skillsWithIcons, ...skillsWithIcons].map((skill, index) => (
+            <div
               key={index}
-              whileHover={{ scale: 1.1 }}
-              className="inline-flex items-center mx-3 px-4 py-2 bg-[#0a192f] border border-[#233554] rounded-lg text-[#ccd6f6] font-medium text-sm hover:text-[#ff6b35] hover:border-[#ff6b35] transition-all duration-300 flex-shrink-0"
+              className="inline-flex items-center mx-3 px-4 py-2 bg-[#0a192f] border border-[#233554] rounded-lg text-[#ccd6f6] font-medium text-sm hover:text-[#ff6b35] hover:border-[#ff6b35] transition-all duration-300 hover:scale-105 flex-shrink-0"
             >
-              <motion.span
-                animate={{ scale: [1, 1.15, 1], opacity: [1, 0.85, 1] }}
-                transition={{
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  duration: 3,
-                  delay: index * 0.1,
-                }}
-                className="mr-2 text-base"
-              >
-                {skill.icon}
-              </motion.span>
+              <span className="mr-2 text-base">{skill.icon}</span>
               {skill.name}
-            </motion.div>
+            </div>
           ))}
         </motion.div>
-      )}
+      </div>
     </div>
   );
 };
