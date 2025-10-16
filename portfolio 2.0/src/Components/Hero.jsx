@@ -45,7 +45,7 @@ const Hero = () => {
               View My Work
             </a>
             <a
-              href="https://docs.google.com/document/d/1vZN6ffrsmkzELsP_GWMqNZDffsLhgE1BVhxEGWjRcTE/edit?usp=sharing"
+              href="https://docs.google.com/document/d/1FTkw2KXjrGFSSHUAF656DbaVbNrCFHSVbEiqOY8LMuQ/edit?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3 border-2 border-[#ff6b35] text-[#ff6b35] font-semibold rounded-lg hover:bg-[#ff6b35] hover:text-[#0a192f] transform hover:-translate-y-1 transition-all duration-300 text-center"
