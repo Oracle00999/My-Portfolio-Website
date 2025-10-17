@@ -68,7 +68,7 @@ const Hero = () => {
                 label: "LinkedIn",
               },
               {
-                href: "https://x.com/TekhTony",
+                href: "https://x.com/i_amtony_",
                 icon: "fab fa-twitter",
                 label: "Twitter",
               },

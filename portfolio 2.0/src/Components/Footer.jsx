@@ -68,7 +68,7 @@ const Footer = () => {
                 label: "LinkedIn",
               },
               {
-                href: "https://x.com/TekhTony",
+                href: "https://x.com/i_amtony_",
                 icon: <FiTwitter size={24} />,
                 label: "Twitter",
               },

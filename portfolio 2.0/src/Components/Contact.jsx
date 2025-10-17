@@ -125,7 +125,7 @@ const Contact = () => {
               color: "hover:text-[#ff6b35]",
             },
             {
-              href: "https://x.com/TekhTony",
+              href: "https://x.com/i_amtony_",
               icon: <FiTwitter size={24} />,
               label: "Twitter Profile",
               color: "hover:text-[#ff6b35]",
