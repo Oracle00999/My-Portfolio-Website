@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import porfolioimg from "../assets/portimg.png";
 
 const About = () => {
   const skills = [
@@ -218,7 +219,7 @@ const About = () => {
           >
             <div className="relative">
               {/* Main Circle */}
-              <div className="w-80 h-80 bg-gradient-to-br from-[#ff6b35] to-[#ff8c61] rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
+              <div className="w-80 h-80  rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
                 {/* Animated Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
                   <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-white rounded-full"></div>
@@ -226,7 +227,7 @@ const About = () => {
                 </div>
 
                 {/* Code Icon */}
-                <div className="relative z-10">
+                {/* <div className="relative z-10">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-28 w-28 text-[#0a192f]"
@@ -241,6 +242,15 @@ const About = () => {
                       d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
                     />
                   </svg>
+                </div> */}
+
+                {/* Profile Image */}
+                <div className="relative z-10 w-76 h-76 rounded-full overflow-hidden border-4 border-[#ff6b35] shadow-xl">
+                  <img
+                    src={porfolioimg}
+                    alt="Anthony's Portfolio"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
 
