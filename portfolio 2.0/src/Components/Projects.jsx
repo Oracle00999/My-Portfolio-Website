@@ -102,7 +102,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-20 bg-[#0a192f] relative overflow-hidden"
+      className="py-16 bg-[#0a192f] relative overflow-hidden"
     >
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
