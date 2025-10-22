@@ -134,7 +134,10 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="text-center md:text-left"
           >
-            <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] bg-clip-text text-transparent mb-6 pt-12">
+            <h2
+              className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] bg-clip-text text-transparent mb-6
+            "
+            >
               About Me
             </h2>
             <p className="mt-4 text-lg text-[#ccd6f6] leading-relaxed">
