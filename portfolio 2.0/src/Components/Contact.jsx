@@ -46,7 +46,7 @@ const Contact = () => {
 
       {/* Animated Heading */}
       <motion.h2
-        className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] text-transparent bg-clip-text"
+        className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] text-transparent bg-clip-text mt-15 pt-3"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}

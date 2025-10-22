@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState("About");
+  const [activeLink, setActiveLink] = useState("Home");
+  const [scrolled, setScrolled] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -19,20 +20,125 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { id: 1, name: "About", href: "#about", icon: "fas fa-user" },
-    { id: 2, name: "Projects", href: "#projects", icon: "fas fa-code" },
-    { id: 3, name: "Contact", href: "#contact", icon: "fas fa-envelope" },
+    { id: 1, name: "Home", href: "#hero", icon: "fas fa-home" },
+    { id: 2, name: "About", href: "#about", icon: "fas fa-user" },
+    { id: 3, name: "Projects", href: "#projects", icon: "fas fa-code" },
+    { id: 4, name: "Contact", href: "#contact", icon: "fas fa-envelope" },
   ];
 
+  // Scroll detection for navbar background and active link
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if scrolled for background opacity
+      const isScrolled = window.scrollY > 10;
+      setScrolled(isScrolled);
+
+      const sections = navLinks.map((link) => {
+        const section = document.querySelector(link.href);
+        return {
+          id: link.name,
+          element: section,
+          top: section ? section.getBoundingClientRect().top : 0,
+          height: section ? section.offsetHeight : 0,
+        };
+      });
+
+      // Find the section currently in view
+      const currentSection = sections.find((section) => {
+        if (section.element) {
+          const rect = section.element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+
+      // If no section is in the middle of viewport, find the one closest to the top
+      if (!currentSection) {
+        const closestSection = sections.reduce(
+          (closest, section) => {
+            if (section.element) {
+              const rect = section.element.getBoundingClientRect();
+              const distance = Math.abs(rect.top);
+              if (distance < Math.abs(closest.distance)) {
+                return { id: section.id, distance };
+              }
+            }
+            return closest;
+          },
+          { id: activeLink, distance: Infinity }
+        );
+
+        setActiveLink(closestSection.id);
+      } else {
+        setActiveLink(currentSection.id);
+      }
+    };
+
+    // Throttle scroll events for better performance
+    let ticking = false;
+    const throttledScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", throttledScroll);
+
+    // Initial check on mount
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", throttledScroll);
+    };
+  }, [activeLink, navLinks]);
+
+  // Smooth scroll function
+  const smoothScroll = (href) => {
+    if (href === "#hero") {
+      // Scroll to top for home/hero
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        const offsetTop =
+          element.getBoundingClientRect().top + window.pageYOffset - 80; // Adjust for navbar height
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
+        });
+      }
+    }
+  };
+
+  const handleNavClick = (e, link) => {
+    e.preventDefault();
+    handleLinkClick(link.name);
+    smoothScroll(link.href);
+  };
+
   return (
-    <nav className="bg-[#0a192f] text-[#ccd6f6] shadow-lg fixed w-full z-50 border-b border-[#112240]">
+    <nav
+      className={`text-[#ccd6f6] shadow-lg fixed w-full z-50 border-b border-[#112240] transition-all duration-300 ${
+        scrolled
+          ? "bg-[#0a192f]/90 backdrop-blur-md"
+          : "bg-[#0a192f]/70 backdrop-blur-sm"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <a
-            href="/"
+            href="#hero"
+            onClick={(e) => handleNavClick(e, { name: "Home", href: "#hero" })}
             className="text-xl font-bold bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] bg-clip-text text-transparent hover:from-[#ff8c61] hover:to-[#ffa07a] transition-all duration-300"
           >
-            <span className="font-mono ">{`> ANTHONY`}</span>
+            <span className="font-mono">{`> ANTHONY`}</span>
           </a>
 
           {/* Hamburger Menu (Mobile) */}
@@ -40,7 +146,9 @@ const Navbar = () => {
             <button
               onClick={toggleMenu}
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-[#8892b0] hover:text-[#ff6b35] hover:bg-[#112240] focus:outline-none transition duration-300"
+              className={`inline-flex items-center justify-center p-2 rounded-md text-[#8892b0] hover:text-[#ff6b35] focus:outline-none transition duration-300 ${
+                scrolled ? "hover:bg-[#112240]/50" : "hover:bg-[#112240]/30"
+              }`}
             >
               <svg
                 className="h-6 w-6"
@@ -75,11 +183,11 @@ const Navbar = () => {
               <a
                 key={link.id}
                 href={link.href}
-                onClick={() => handleLinkClick(link.name)}
+                onClick={(e) => handleNavClick(e, link)}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 border-b-2 ${
                   activeLink === link.name
-                    ? "text-[#ff6b35] border-[#ff6b35] bg-[#112240]"
-                    : "text-[#ccd6f6] border-transparent hover:text-[#ff6b35] hover:border-[#ff6b35]"
+                    ? "text-[#ff6b35] border-[#ff6b35] bg-[#112240]/50"
+                    : "text-[#ccd6f6] border-transparent hover:text-[#ff6b35] hover:border-[#ff6b35] hover:bg-[#112240]/30"
                 }`}
               >
                 <i className={`${link.icon} mr-2`}></i>
@@ -98,18 +206,18 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="sm:hidden bg-[#112240] border-t border-[#233554]"
+            className="sm:hidden bg-[#112240]/95 backdrop-blur-md border-t border-[#233554]"
           >
             <div className="px-2 pt-2 pb-4 space-y-2">
               {navLinks.map((link) => (
                 <a
                   key={link.id}
                   href={link.href}
-                  onClick={() => handleLinkClick(link.name)}
+                  onClick={(e) => handleNavClick(e, link)}
                   className={`block px-4 py-3 rounded-md text-base font-medium transition-all duration-300 ${
                     activeLink === link.name
-                      ? "text-[#ff6b35] bg-[#0a192f] border-l-4 border-[#ff6b35]"
-                      : "text-[#ccd6f6] hover:text-[#ff6b35] hover:bg-[#0a192f]"
+                      ? "text-[#ff6b35] bg-[#0a192f]/50 border-l-4 border-[#ff6b35]"
+                      : "text-[#ccd6f6] hover:text-[#ff6b35] hover:bg-[#0a192f]/30"
                   }`}
                 >
                   <i className={`${link.icon} mr-3`}></i>

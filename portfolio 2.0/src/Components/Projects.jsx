@@ -110,7 +110,7 @@ const Projects = () => {
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] bg-clip-text text-transparent text-center mb-16"
+          className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] bg-clip-text text-transparent text-center mb-16 pt-12"
         >
           My Projects
         </motion.h2>

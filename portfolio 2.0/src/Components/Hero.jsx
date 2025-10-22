@@ -17,7 +17,10 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="text-center md:text-left"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight sm:leading-snug md:leading-snug break-words bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] bg-clip-text text-transparent">
+          <h1
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight sm:leading-snug md:leading-snug break-words bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] bg-clip-text text-transparent m
+          pt-12"
+          >
             Hi, I'm Nwazota Chibuike
           </h1>
           <TypingEffect />
