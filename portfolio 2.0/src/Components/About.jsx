@@ -124,7 +124,7 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-20 bg-[#0a192f]">
+    <section id="about" className="py-15 bg-[#0a192f]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           {/* Left Column: Text Content */}
