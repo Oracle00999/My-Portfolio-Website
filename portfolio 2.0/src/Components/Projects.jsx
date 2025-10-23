@@ -4,8 +4,24 @@ import movieDatabasePic from "../assets/moviedatabase.png";
 import LandingPagePics from "../assets/landingpage.jpg";
 // import portfolioImg from "../assets/portfolioImg.png";
 import BlogAppPic from "../assets/nodejsblog.png";
+import figma from "../assets/figma.png";
 
 const projects = [
+  {
+    id: 4,
+    title: "SDK Enterprise",
+    description:
+      "This is a modern, responsive landing page built with React and Tailwind CSS. The design was provided by a friend, and I handled the complete implementation — translating the static design into a fully functional, perfect web page",
+    technologies: [
+      "React.js",
+      "Tailwind CSS",
+      "Responsive Design",
+      "Framer Motion",
+    ],
+    demoLink: "https://figma-design-0.vercel.app/",
+    githubLink: "https://github.com/Oracle00999/figma-design.git",
+    image: figma,
+  },
   {
     id: 1,
     title: "Movie Database APP",
@@ -16,21 +32,7 @@ const projects = [
     githubLink: "https://github.com/Oracle00999/ALX_CAPSTONE_PROJECT.git",
     image: movieDatabasePic,
   },
-  {
-    id: 2,
-    title: "Modern SaaS Landing Platform - GrowthEngine",
-    description:
-      "A sleek and responsive landing page designed to captivate users with modern UI/UX principles. Features smooth animations and optimized performance to enhance user experience.",
-    technologies: [
-      "React.js",
-      "Tailwind CSS",
-      "Responsive Design",
-      "Framer Motion",
-    ],
-    demoLink: "https://landingpage-sigma-hazel.vercel.app/",
-    githubLink: "https://github.com/Oracle00999/Projects.git",
-    image: LandingPagePics,
-  },
+
   {
     id: 3,
     title: "Dynamic Node.js Blog Application",
@@ -48,22 +50,21 @@ const projects = [
     githubLink: "https://github.com/Oracle00999/Nodejs-blog-app",
     image: BlogAppPic,
   },
-
-  // {
-  //   id: 4,
-  //   title: "Portfolio Website",
-  //   description:
-  //     "Designed and developed a responsive single-page portfolio to showcase my projects and skills. Built with React, Tailwind CSS, featuring smooth scrolling navigation, animations with Framer Motion, and a modern UI/UX layout. Optimized for performance and mobile devices.",
-  //   technologies: [
-  //     "React.js",
-  //     "Tailwind CSS",
-  //     "Responsive Design",
-  //     "Framer Motion",
-  //   ],
-  //   demoLink: "https://nwazota-anthony.vercel.app/",
-  //   githubLink: "https://github.com/Oracle00999/My-Portfolio-Website.git",
-  //   image: portfolioImg,
-  // },
+  {
+    id: 2,
+    title: "Modern SaaS Landing Platform - GrowthEngine",
+    description:
+      "A sleek and responsive landing page designed to captivate users with modern UI/UX principles. Features smooth animations and optimized performance to enhance user experience.",
+    technologies: [
+      "React.js",
+      "Tailwind CSS",
+      "Responsive Design",
+      "Framer Motion",
+    ],
+    demoLink: "https://landingpage-sigma-hazel.vercel.app/",
+    githubLink: "https://github.com/Oracle00999/Projects.git",
+    image: LandingPagePics,
+  },
 ];
 
 // ReadMore Component
