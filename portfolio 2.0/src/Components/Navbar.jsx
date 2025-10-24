@@ -23,6 +23,12 @@ const Navbar = () => {
     { id: 1, name: "Home", href: "#hero", icon: "fas fa-home" },
     { id: 2, name: "About", href: "#about", icon: "fas fa-user" },
     { id: 3, name: "Projects", href: "#projects", icon: "fas fa-code" },
+    {
+      id: 4,
+      name: "Experience",
+      href: "#experience",
+      icon: "fas fa-briefcase ",
+    },
     { id: 4, name: "Contact", href: "#contact", icon: "fas fa-envelope" },
   ];
 

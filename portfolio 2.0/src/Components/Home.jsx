@@ -6,6 +6,7 @@ import Projects from "./Projects";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import SkillsMarqueeWithIcons from "./SkillsMarquee";
+import Experience from "./Experience";
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
       <Hero />
       <About />
       <Projects />
+      <Experience />
       <Contact />
       <SkillsMarqueeWithIcons />
       <Footer />
