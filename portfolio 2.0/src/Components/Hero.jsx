@@ -7,9 +7,26 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen bg-[#0a192f] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 md:pt-24 pb-8 sm:pb-12 md:pb-0"
+      className="min-h-screen bg-[#0a192f] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 md:pt-24 pb-8 sm:pb-12 md:pb-0 relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      {/* Grid Background */}
+      <div className="absolute inset-0 opacity-50">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255, 107, 53, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255, 107, 53, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: "60px 60px",
+            backgroundPosition: "center center",
+            maskImage:
+              "radial-gradient(circle at center, black 40%, transparent 70%)",
+          }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
         {/* Left Column: Text Content */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -97,31 +114,12 @@ const Hero = () => {
         >
           <div className="relative">
             {/* Main Circle */}
-            <div className="w-82 h-82  rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
+            <div className="w-82 h-82 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
               {/* Animated Background Pattern */}
-
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-white rounded-full"></div>
                 <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-white rounded-full"></div>
               </div>
-
-              {/* Code Icon */}
-              {/* <div className="relative z-10">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-24 w-24 text-[#0a192f]"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                  />
-                </svg>
-              </div> */}
 
               {/* Profile Image */}
               <div className="relative z-10 w-76 h-76 rounded-full overflow-hidden border-4 border-[#ff6b35] shadow-xl">

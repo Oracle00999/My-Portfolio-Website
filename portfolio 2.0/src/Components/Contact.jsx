@@ -36,6 +36,23 @@ const Contact = () => {
       id="contact"
       className="min-h-screen flex flex-col items-center justify-center bg-[#0a192f] text-[#ccd6f6] px-4 sm:px-6 lg:px-10 relative overflow-hidden py-8"
     >
+      {/* Grid Background */}
+      <div className="absolute inset-0 opacity-25">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255, 107, 53, 0.08) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255, 107, 53, 0.08) 1px, transparent 1px)
+            `,
+            backgroundSize: "65px 65px",
+            backgroundPosition: "center center",
+            maskImage:
+              "radial-gradient(circle at center, black 40%, transparent 75%)",
+          }}
+        />
+      </div>
+
       {/* Decorative Background Shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-20 -left-20 w-64 h-64 bg-[#ff6b35] rounded-full opacity-10 blur-2xl"></div>
@@ -46,7 +63,7 @@ const Contact = () => {
 
       {/* Animated Heading */}
       <motion.h2
-        className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] text-transparent bg-clip-text  pt-3"
+        className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] text-transparent bg-clip-text pt-3 relative z-10"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -55,7 +72,7 @@ const Contact = () => {
       </motion.h2>
 
       {/* Section Divider */}
-      <div className="w-20 h-1 bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] mb-8 rounded-full"></div>
+      <div className="w-20 h-1 bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] mb-8 rounded-full relative z-10"></div>
 
       {/* Contact Card */}
       <motion.div
@@ -173,7 +190,7 @@ const Contact = () => {
 
       {/* Floating Elements */}
       <motion.div
-        className="absolute bottom-10 left-10 text-[#8892b0] opacity-30"
+        className="absolute bottom-10 left-10 text-[#8892b0] opacity-30 z-10"
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 3, repeat: Infinity }}
       >
@@ -181,7 +198,7 @@ const Contact = () => {
       </motion.div>
 
       <motion.div
-        className="absolute top-10 right-10 text-[#8892b0] opacity-30"
+        className="absolute top-10 right-10 text-[#8892b0] opacity-30 z-10"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 3, repeat: Infinity, delay: 1 }}
       >

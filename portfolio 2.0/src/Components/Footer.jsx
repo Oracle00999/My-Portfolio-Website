@@ -20,10 +20,25 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#0a192f] text-[#ccd6f6] py-16 relative overflow-hidden border-t border-[#112240]">
-      {/* Background Elements */}
+      {/* Grid Background - More visible */}
+      <div className="absolute inset-0 opacity-25">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255, 107, 53, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255, 107, 53, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: "60px 60px",
+            backgroundPosition: "center center",
+          }}
+        />
+      </div>
+
+      {/* Background Elements - Reduced opacity so grid shows through */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#ff6b35] rounded-full opacity-5 blur-3xl"></div>
-        <div className="absolute top-0 right-0 w-64 h-64 bg-[#ff8c61] rounded-full opacity-5 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#ff6b35] rounded-full opacity-3 blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#ff8c61] rounded-full opacity-3 blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -148,7 +163,7 @@ const Footer = () => {
       </div>
 
       {/* Decorative Bottom Border */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#ff6b35] to-transparent opacity-30"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#ff6b35] to-transparent opacity-30 z-20"></div>
     </footer>
   );
 };

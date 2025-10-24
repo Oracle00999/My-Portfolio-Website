@@ -124,8 +124,25 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-15 bg-[#0a192f]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-15 bg-[#0a192f] relative overflow-hidden">
+      {/* Grid Background */}
+      <div className="absolute inset-0 opacity-25">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255, 107, 53, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255, 107, 53, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: "60px 60px",
+            backgroundPosition: "center center",
+            maskImage:
+              "radial-gradient(circle at center, black 30%, transparent 70%)",
+          }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           {/* Left Column: Text Content */}
           <motion.div
@@ -134,10 +151,7 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="text-center md:text-left"
           >
-            <h2
-              className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] bg-clip-text text-transparent mb-6
-            "
-            >
+            <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] bg-clip-text text-transparent mb-6">
               About Me
             </h2>
             <p className="mt-4 text-lg text-[#ccd6f6] leading-relaxed">
@@ -222,30 +236,12 @@ const About = () => {
           >
             <div className="relative">
               {/* Main Circle */}
-              <div className="w-80 h-80  rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
+              <div className="w-80 h-80 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
                 {/* Animated Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
                   <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-white rounded-full"></div>
                   <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-white rounded-full"></div>
                 </div>
-
-                {/* Code Icon */}
-                {/* <div className="relative z-10">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-28 w-28 text-[#0a192f]"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                    />
-                  </svg>
-                </div> */}
 
                 {/* Profile Image */}
                 <div className="relative z-10 w-76 h-76 rounded-full overflow-hidden border-4 border-[#ff6b35] shadow-xl">
