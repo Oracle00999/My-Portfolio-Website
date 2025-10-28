@@ -5,8 +5,19 @@ import LandingPagePics from "../assets/landingpage.jpg";
 // import portfolioImg from "../assets/portfolioImg.png";
 import BlogAppPic from "../assets/nodejsblog.png";
 import figma from "../assets/figma.png";
+import Aether from "../assets/aether.png";
 
 const projects = [
+  {
+    id: 2,
+    title: "Aether — Minimalist Fashion Landing Page",
+    description:
+      "A modern, responsive landing page for a sustainable clothing brand, built with a focus on clean aesthetics and mobile-first design. Features curated product showcases, collection highlights, and an elegant newsletter section ",
+    technologies: ["React.js", "Tailwind CSS"],
+    demoLink: "https://aether-gblbfw1ck-anthonys-projects-147497c1.vercel.app/",
+    githubLink: "https://github.com/Oracle00999/Aether.git",
+    image: Aether,
+  },
   {
     id: 4,
     title: "SDK Enterprise",
@@ -50,21 +61,21 @@ const projects = [
     githubLink: "https://github.com/Oracle00999/Nodejs-blog-app",
     image: BlogAppPic,
   },
-  {
-    id: 2,
-    title: "Modern SaaS Landing Platform - GrowthEngine",
-    description:
-      "A sleek and responsive landing page designed to captivate users with modern UI/UX principles. Features smooth animations and optimized performance to enhance user experience.",
-    technologies: [
-      "React.js",
-      "Tailwind CSS",
-      "Responsive Design",
-      "Framer Motion",
-    ],
-    demoLink: "https://landingpage-sigma-hazel.vercel.app/",
-    githubLink: "https://github.com/Oracle00999/Projects.git",
-    image: LandingPagePics,
-  },
+  // {
+  //   id: 2,
+  //   title: "Modern SaaS Landing Platform - GrowthEngine",
+  //   description:
+  //     "A sleek and responsive landing page designed to captivate users with modern UI/UX principles. Features smooth animations and optimized performance to enhance user experience.",
+  //   technologies: [
+  //     "React.js",
+  //     "Tailwind CSS",
+  //     "Responsive Design",
+  //     "Framer Motion",
+  //   ],
+  //   demoLink: "https://landingpage-sigma-hazel.vercel.app/",
+  //   githubLink: "https://github.com/Oracle00999/Projects.git",
+  //   image: LandingPagePics,
+  // },
 ];
 
 // ReadMore Component
