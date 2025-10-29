@@ -14,7 +14,7 @@ const projects = [
     description:
       "A modern, responsive landing page for a sustainable clothing brand, built with a focus on clean aesthetics and mobile-first design. Features curated product showcases, collection highlights, and an elegant newsletter section ",
     technologies: ["React.js", "Tailwind CSS"],
-    demoLink: "https://aether-azure.vercel.app/",
+    demoLink: "https://aetherclothing.vercel.app/",
     githubLink: "https://github.com/Oracle00999/Aether.git",
     image: Aether,
   },
