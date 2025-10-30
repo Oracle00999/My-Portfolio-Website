@@ -99,7 +99,7 @@ const Experience = () => {
         "GitHub",
       ],
       logo: "🖥️",
-      link: "#",
+      // link: "#",
     },
   ];
 
