@@ -1,29 +1,45 @@
 import React from "react";
 import { motion } from "framer-motion";
 import TypingEffect from "./Typingeffect";
-import porfolioimg from "../assets/portimg.png";
+import porfolioimg from "../assets/img.png";
 
 const Hero = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen bg-[#0a192f] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 md:pt-24 pb-8 sm:pb-12 md:pb-0 relative overflow-hidden"
+      className="min-h-screen bg-[#0E0E0E] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 md:pt-24 pb-8 sm:pb-12 md:pb-0 relative overflow-hidden"
     >
-      {/* Grid Background */}
-      <div className="absolute inset-0 opacity-50">
+      {/* Combined Grid and Circle Pattern Background */}
+      <div className="absolute inset-0">
+        {/* Subtle Grid */}
         <div
-          className="w-full h-full"
+          className="absolute inset-0 opacity-29"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(255, 107, 53, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255, 107, 53, 0.1) 1px, transparent 1px)
+              linear-gradient(#1C1C1C 1px, transparent 1px),
+              linear-gradient(90deg, #1C1C1C 1px, transparent 1px)
             `,
-            backgroundSize: "60px 60px",
+            backgroundSize: "50px 50px",
             backgroundPosition: "center center",
-            maskImage:
-              "radial-gradient(circle at center, black 40%, transparent 70%)",
           }}
         />
+
+        {/* Circle Pattern Overlay */}
+        <div
+          className="absolute inset-0 opacity-15"
+          style={{
+            backgroundImage: `
+              radial-gradient(circle at 20% 80%, #1C1C1C 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, #1C1C1C 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, #1C1C1C 0%, transparent 50%)
+            `,
+            backgroundSize: "400px 400px, 300px 300px, 500px 500px",
+            backgroundPosition: "10% 10%, 90% 90%, 50% 50%",
+          }}
+        />
+
+        {/* Gradient Vignette */}
+        <div className="absolute inset-0 bg-radial-gradient(at center, transparent 0%, #0E0E0E 70%)" />
       </div>
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
@@ -34,21 +50,21 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="text-center md:text-left"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight sm:leading-snug md:leading-snug break-words bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] bg-clip-text text-transparent pt-12">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight sm:leading-snug md:leading-snug break-words text-[#FFFFFF] pt-12">
             Hi, I'm Nwazota Chibuike
           </h1>
           <TypingEffect />
-          <p className="mt-6 text-lg text-[#ccd6f6] font-medium">
+          <p className="mt-6 text-lg text-[#FFFFFF] font-medium">
             Full-Stack Developer | Building End-to-End Web Solutions
           </p>
-          <p className="mt-4 text-[#8892b0] leading-relaxed">
+          <p className="mt-4 text-[#A0A0A0] leading-relaxed">
             I specialize in developing sleek, responsive, and user-friendly
             applications that work seamlessly across the front end and back end.
             With expertise in React, Tailwind CSS, Node.js, Express, and
             databases like MongoDB and SQL, I bring ideas to life with modern
             technologies.
           </p>
-          <p className="mt-4 text-[#8892b0] leading-relaxed">
+          <p className="mt-4 text-[#A0A0A0] leading-relaxed">
             Whether it's crafting engaging user interfaces or designing scalable
             backend systems, I'm dedicated to delivering high-quality solutions
             that truly make an impact.
@@ -58,7 +74,7 @@ const Hero = () => {
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <a
               href="#projects"
-              className="px-8 py-3 bg-[#ff6b35] text-[#0a192f] font-semibold rounded-lg hover:bg-[#ff8c61] transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl text-center"
+              className="px-8 py-3 bg-[#C5A15B] text-[#0E0E0E] font-semibold rounded-lg hover:bg-[#D4AF37] transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl text-center"
             >
               View My Work
             </a>
@@ -66,7 +82,7 @@ const Hero = () => {
               href="https://docs.google.com/document/d/1FTkw2KXjrGFSSHUAF656DbaVbNrCFHSVbEiqOY8LMuQ/edit?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3 border-2 border-[#ff6b35] text-[#ff6b35] font-semibold rounded-lg hover:bg-[#ff6b35] hover:text-[#0a192f] transform hover:-translate-y-1 transition-all duration-300 text-center"
+              className="px-8 py-3 border-2 border-[#C5A15B] text-[#C5A15B] font-semibold rounded-lg hover:bg-[#C5A15B] hover:text-[#0E0E0E] transform hover:-translate-y-1 transition-all duration-300 text-center"
             >
               View RESUME
             </a>
@@ -96,7 +112,7 @@ const Hero = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#8892b0] hover:text-[#ff6b35] transform hover:-translate-y-1 transition-all duration-300"
+                className="text-[#A0A0A0] hover:text-[#C5A15B] transform hover:-translate-y-1 transition-all duration-300"
                 aria-label={social.label}
               >
                 <i className={`${social.icon} text-2xl`}></i>
@@ -115,14 +131,8 @@ const Hero = () => {
           <div className="relative">
             {/* Main Circle */}
             <div className="w-82 h-82 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
-              {/* Animated Background Pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-white rounded-full"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-white rounded-full"></div>
-              </div>
-
               {/* Profile Image */}
-              <div className="relative z-10 w-76 h-76 rounded-full overflow-hidden border-4 border-[#ff6b35] shadow-xl">
+              <div className="relative z-10 w-76 h-76 rounded-full overflow-hidden border-4 border-[#C5A15B] shadow-xl">
                 <img
                   src={porfolioimg}
                   alt="Anthony's Portfolio"
@@ -135,17 +145,17 @@ const Hero = () => {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 3, repeat: Infinity }}
-              className="absolute -top-4 -right-4 w-16 h-16 bg-[#112240] rounded-full flex items-center justify-center shadow-lg border border-[#233554]"
+              className="absolute -top-4 -right-4 w-16 h-16 bg-[#1C1C1C] rounded-full flex items-center justify-center shadow-lg border border-[#2A2A2A]"
             >
-              <i className="fab fa-react text-[#ff6b35] text-xl"></i>
+              <i className="fab fa-react text-[#C5A15B] text-xl"></i>
             </motion.div>
 
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-              className="absolute -bottom-6 -left-6 w-20 h-20 bg-[#112240] rounded-full flex items-center justify-center shadow-lg border border-[#233554]"
+              className="absolute -bottom-6 -left-6 w-20 h-20 bg-[#1C1C1C] rounded-full flex items-center justify-center shadow-lg border border-[#2A2A2A]"
             >
-              <i className="fab fa-js-square text-[#ff6b35] text-2xl"></i>
+              <i className="fab fa-js-square text-[#C5A15B] text-2xl"></i>
             </motion.div>
           </div>
         </motion.div>

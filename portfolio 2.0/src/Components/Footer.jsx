@@ -19,26 +19,44 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0a192f] text-[#ccd6f6] py-16 relative overflow-hidden border-t border-[#112240]">
-      {/* Grid Background - More visible */}
-      <div className="absolute inset-0 opacity-25">
+    <footer className="bg-[#0E0E0E] text-[#A0A0A0] py-16 relative overflow-hidden border-t border-[#1C1C1C]">
+      {/* Combined Grid and Circle Pattern Background */}
+      <div className="absolute inset-0">
+        {/* Subtle Grid */}
         <div
-          className="w-full h-full"
+          className="absolute inset-0 opacity-25"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(255, 107, 53, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255, 107, 53, 0.1) 1px, transparent 1px)
+              linear-gradient(#1C1C1C 1px, transparent 1px),
+              linear-gradient(90deg, #1C1C1C 1px, transparent 1px)
             `,
-            backgroundSize: "60px 60px",
+            backgroundSize: "50px 50px",
             backgroundPosition: "center center",
           }}
         />
+
+        {/* Circle Pattern Overlay */}
+        <div
+          className="absolute inset-0 opacity-15"
+          style={{
+            backgroundImage: `
+              radial-gradient(circle at 20% 80%, #1C1C1C 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, #1C1C1C 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, #1C1C1C 0%, transparent 50%)
+            `,
+            backgroundSize: "400px 400px, 300px 300px, 500px 500px",
+            backgroundPosition: "10% 10%, 90% 90%, 50% 50%",
+          }}
+        />
+
+        {/* Gradient Vignette */}
+        <div className="absolute inset-0 bg-radial-gradient(at center, transparent 0%, #0E0E0E 70%)" />
       </div>
 
-      {/* Background Elements - Reduced opacity so grid shows through */}
+      {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#ff6b35] rounded-full opacity-3 blur-3xl"></div>
-        <div className="absolute top-0 right-0 w-64 h-64 bg-[#ff8c61] rounded-full opacity-3 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#C5A15B] rounded-full opacity-3 blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#D4AF37] rounded-full opacity-3 blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -48,7 +66,7 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] bg-clip-text text-transparent mb-6"
+            className="text-3xl sm:text-4xl font-bold text-[#FFFFFF] mb-6"
           >
             Let's Build Something Amazing Together!
           </motion.h2>
@@ -57,7 +75,7 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-lg text-[#8892b0] mb-8 max-w-2xl"
+            className="text-lg text-[#A0A0A0] mb-8 max-w-2xl"
           >
             I'm always open to discussing new opportunities, creative projects,
             and innovative ideas. Let's connect and create something
@@ -99,7 +117,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={link.label}
-                className="p-4 rounded-full bg-[#112240] border border-[#233554] text-[#8892b0] hover:text-[#ff6b35] hover:border-[#ff6b35] transition-all duration-300 relative group"
+                className="p-4 rounded-full bg-[#1C1C1C] border border-[#2A2A2A] text-[#A0A0A0] hover:text-[#C5A15B] hover:border-[#C5A15B] transition-all duration-300 relative group"
                 whileHover={{
                   scale: 1.1,
                   y: -2,
@@ -108,7 +126,7 @@ const Footer = () => {
               >
                 {link.icon}
                 {/* Tooltip */}
-                <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-[#ff6b35] text-[#0a192f] text-xs font-semibold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-[#C5A15B] text-[#0E0E0E] text-xs font-semibold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
                   {link.label}
                 </span>
               </motion.a>
@@ -124,7 +142,7 @@ const Footer = () => {
           >
             <a
               href="mailto:nwazotachibuike@gmail.com"
-              className="text-[#ff6b35] hover:text-[#ff8c61] font-semibold text-lg transition-colors duration-300"
+              className="text-[#C5A15B] hover:text-[#D4AF37] font-semibold text-lg transition-colors duration-300"
             >
               nwazotachibuike@gmail.com
             </a>
@@ -135,7 +153,7 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-sm text-[#8892b0] mb-6"
+            className="text-sm text-[#A0A0A0] mb-6"
           >
             <p>© {currentYear} Nwazota Chibuike. All rights reserved.</p>
             <p className="mt-1">Built with React & Tailwind CSS</p>
@@ -147,7 +165,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             onClick={scrollToTop}
-            className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] text-[#0a192f] font-semibold rounded-lg hover:shadow-2xl hover:shadow-[#ff6b35]/30 transform hover:-translate-y-1 transition-all duration-300 group"
+            className="flex items-center space-x-2 px-6 py-3 bg-[#C5A15B] text-[#0E0E0E] font-semibold rounded-lg hover:bg-[#D4AF37] hover:shadow-2xl hover:shadow-[#C5A15B]/30 transform hover:-translate-y-1 transition-all duration-300 group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -163,7 +181,7 @@ const Footer = () => {
       </div>
 
       {/* Decorative Bottom Border */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#ff6b35] to-transparent opacity-30 z-20"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#C5A15B] to-transparent opacity-30 z-20"></div>
     </footer>
   );
 };

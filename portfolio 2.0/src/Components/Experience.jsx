@@ -9,48 +9,6 @@ import {
 
 const Experience = () => {
   const experiences = [
-    // {
-    //   id: 1,
-    //   title: "Full-Stack Developer",
-    //   company: "Freelance",
-    //   type: "Freelance",
-    //   location: "Remote",
-    //   period: "2023 - Present",
-    //   description: [
-    //     "Developed and deployed full-stack web applications for various clients using React, Node.js, and MongoDB",
-    //     "Built responsive user interfaces with modern CSS frameworks like Tailwind CSS and Styled Components",
-    //     "Implemented RESTful APIs and integrated third-party services including payment gateways and authentication systems",
-    //     "Collaborated with clients to understand requirements and deliver scalable solutions",
-    //   ],
-    //   technologies: [
-    //     "React",
-    //     "Node.js",
-    //     "MongoDB",
-    //     "Express",
-    //     "Tailwind CSS",
-    //     "Git",
-    //   ],
-    //   logo: "💼",
-    //   link: "#",
-    // },
-
-    // {
-    //   id: 2,
-    //   title: "Frontend Developer Intern",
-    //   company: "Tech Startup Inc.",
-    //   type: "Internship",
-    //   location: "Lagos, Nigeria",
-    //   period: "2022 - 2023",
-    //   description: [
-    //     "Worked on building responsive user interfaces for web applications using React.js",
-    //     "Collaborated with UX designers to implement pixel-perfect designs",
-    //     "Participated in agile development processes and code reviews",
-    //     "Optimized application performance and improved loading times by 30%",
-    //   ],
-    //   technologies: ["React", "JavaScript", "CSS3", "Git", "Figma"],
-    //   logo: "🚀",
-    //   link: "#",
-    // },
     {
       id: 1,
       title: "ALX Frontend Program",
@@ -121,26 +79,42 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="py-20 bg-[#0a192f] relative overflow-hidden"
+      className="py-20 bg-[#0E0E0E] relative overflow-hidden"
     >
-      {/* Grid Background */}
-      <div className="absolute inset-0 opacity-25">
+      {/* Combined Grid and Circle Pattern Background */}
+      <div className="absolute inset-0">
+        {/* Subtle Grid */}
         <div
-          className="w-full h-full"
+          className="absolute inset-0 opacity-25"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(255, 107, 53, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255, 107, 53, 0.1) 1px, transparent 1px)
+              linear-gradient(#1C1C1C 1px, transparent 1px),
+              linear-gradient(90deg, #1C1C1C 1px, transparent 1px)
             `,
-            backgroundSize: "70px 70px",
+            backgroundSize: "50px 50px",
             backgroundPosition: "center center",
-            maskImage:
-              "radial-gradient(circle at center, black 40%, transparent 70%)",
           }}
         />
+
+        {/* Circle Pattern Overlay */}
+        <div
+          className="absolute inset-0 opacity-15"
+          style={{
+            backgroundImage: `
+              radial-gradient(circle at 20% 80%, #1C1C1C 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, #1C1C1C 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, #1C1C1C 0%, transparent 50%)
+            `,
+            backgroundSize: "400px 400px, 300px 300px, 500px 500px",
+            backgroundPosition: "10% 10%, 90% 90%, 50% 50%",
+          }}
+        />
+
+        {/* Gradient Vignette */}
+        <div className="absolute inset-0 bg-radial-gradient(at center, transparent 0%, #0E0E0E 70%)" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 ">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -148,11 +122,11 @@ const Experience = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] bg-clip-text text-transparent mb-4">
+          <h2 className="text-4xl sm:text-5xl font-bold text-[#FFFFFF] mb-4">
             Experience
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] mx-auto mb-6 rounded-full"></div>
-          <p className="text-lg text-[#8892b0] max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-[#C5A15B] mx-auto mb-6 rounded-full"></div>
+          <p className="text-lg text-[#A0A0A0] max-w-2xl mx-auto">
             My journey through various roles and projects that have shaped my
             skills and passion for creating exceptional digital experiences.
           </p>
@@ -167,7 +141,7 @@ const Experience = () => {
           className="relative"
         >
           {/* Timeline Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#ff6b35] via-[#ff8c61] to-[#ff6b35] opacity-30 transform -translate-x-1/2 hidden md:block"></div>
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#C5A15B] via-[#D4AF37] to-[#C5A15B] opacity-30 transform -translate-x-1/2 hidden md:block"></div>
 
           {experiences.map((experience, index) => (
             <motion.div
@@ -178,7 +152,7 @@ const Experience = () => {
               } mb-12 md:mb-16`}
             >
               {/* Timeline Dot */}
-              <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-[#ff6b35] rounded-full border-4 border-[#0a192f] transform -translate-x-1/2 z-10 hidden md:block"></div>
+              <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-[#C5A15B] rounded-full border-4 border-[#0E0E0E] transform -translate-x-1/2 z-10 hidden md:block"></div>
 
               {/* Content Card */}
               <div
@@ -186,20 +160,20 @@ const Experience = () => {
                   index % 2 === 0 ? "md:pr-8" : "md:pl-8"
                 }`}
               >
-                <div className="bg-[#112240] border border-[#233554] rounded-2xl p-6 shadow-2xl hover:shadow-2xl hover:shadow-[#ff6b35]/10 transition-all duration-300 hover:border-[#ff6b35]/30 group">
+                <div className="bg-[#1C1C1C] border border-[#2A2A2A] rounded-2xl p-6 shadow-2xl hover:shadow-2xl hover:shadow-[#C5A15B]/10 transition-all duration-300 hover:border-[#C5A15B]/30 group">
                   {/* Header */}
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center space-x-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[#ff6b35] to-[#ff8c61] rounded-lg flex items-center justify-center text-xl">
+                      <div className="w-12 h-12 bg-gradient-to-br from-[#C5A15B] to-[#D4AF37] rounded-lg flex items-center justify-center text-xl">
                         {experience.logo}
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-[#ccd6f6] group-hover:text-[#ff6b35] transition-colors duration-300">
+                        <h3 className="text-xl font-bold text-[#FFFFFF] group-hover:text-[#C5A15B] transition-colors duration-300">
                           {experience.title}
                         </h3>
-                        <div className="flex items-center space-x-2 text-[#ff6b35] font-semibold">
+                        <div className="flex items-center space-x-2 text-[#C5A15B] font-semibold">
                           <span>{experience.company}</span>
-                          <span className="text-sm bg-[#ff6b35]/10 px-2 py-1 rounded-full">
+                          <span className="text-sm bg-[#C5A15B]/10 px-2 py-1 rounded-full">
                             {experience.type}
                           </span>
                         </div>
@@ -211,7 +185,7 @@ const Experience = () => {
                         href={experience.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[#8892b0] hover:text-[#ff6b35] transition-colors duration-300"
+                        className="text-[#A0A0A0] hover:text-[#C5A15B] transition-colors duration-300"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                       >
@@ -221,7 +195,7 @@ const Experience = () => {
                   </div>
 
                   {/* Meta Information */}
-                  <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-[#8892b0]">
+                  <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-[#A0A0A0]">
                     <div className="flex items-center space-x-1">
                       <FiCalendar size={14} />
                       <span>{experience.period}</span>
@@ -237,9 +211,9 @@ const Experience = () => {
                     {experience.description.map((point, pointIndex) => (
                       <li
                         key={pointIndex}
-                        className="flex items-start space-x-2 text-[#8892b0]"
+                        className="flex items-start space-x-2 text-[#A0A0A0]"
                       >
-                        <span className="text-[#ff6b35] mt-1.5">▸</span>
+                        <span className="text-[#C5A15B] mt-1.5">▸</span>
                         <span>{point}</span>
                       </li>
                     ))}
@@ -250,7 +224,7 @@ const Experience = () => {
                     {experience.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-3 py-1 bg-[#0a192f] border border-[#233554] text-[#ffffff] text-xs font-medium rounded-full hover:border-[#64ffda] transition-all duration-300"
+                        className="px-3 py-1 bg-[#0E0E0E] border border-[#2A2A2A] text-[#A0A0A0] text-xs font-medium rounded-full hover:border-[#C5A15B] hover:text-[#C5A15B] transition-all duration-300"
                       >
                         {tech}
                       </span>
@@ -261,7 +235,7 @@ const Experience = () => {
 
               {/* Date for Mobile */}
               <div className="ml-12 mt-2 md:hidden">
-                <div className="flex items-center space-x-1 text-sm text-[#ff6b35] font-semibold">
+                <div className="flex items-center space-x-1 text-sm text-[#C5A15B] font-semibold">
                   <FiCalendar size={14} />
                   <span>{experience.period}</span>
                 </div>
@@ -277,12 +251,12 @@ const Experience = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center mt-12"
         >
-          <p className="text-lg text-[#8892b0] mb-6">
+          <p className="text-lg text-[#A0A0A0] mb-6">
             Interested in working together?
           </p>
           <motion.a
             href="#contact"
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] text-[#0a192f] font-bold rounded-lg hover:shadow-2xl hover:shadow-[#ff6b35]/30 transform hover:-translate-y-1 transition-all duration-300"
+            className="inline-flex items-center px-8 py-4 bg-[#C5A15B] text-[#0E0E0E] font-bold rounded-lg hover:bg-[#D4AF37] hover:shadow-2xl hover:shadow-[#C5A15B]/30 transform hover:-translate-y-1 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

@@ -45,7 +45,7 @@ const SkillsMarqueeWithIcons = () => {
   return (
     <div
       ref={ref}
-      className="w-full py-6 bg-[#112240] border-y border-[#233554] overflow-hidden"
+      className="w-full py-6 bg-[#1C1C1C] border-y border-[#2A2A2A] overflow-hidden"
     >
       <div className="relative flex">
         <motion.div
@@ -57,7 +57,7 @@ const SkillsMarqueeWithIcons = () => {
           {[...skillsWithIcons, ...skillsWithIcons].map((skill, index) => (
             <div
               key={index}
-              className="inline-flex items-center mx-3 px-4 py-2 bg-[#0a192f] border border-[#233554] rounded-lg text-[#ccd6f6] font-medium text-sm hover:text-[#ff6b35] hover:border-[#ff6b35] transition-all duration-300 hover:scale-105 flex-shrink-0"
+              className="inline-flex items-center mx-3 px-4 py-2 bg-[#0E0E0E] border border-[#2A2A2A] rounded-lg text-[#A0A0A0] font-medium text-sm hover:text-[#C5A15B] hover:border-[#C5A15B] transition-all duration-300 hover:scale-105 flex-shrink-0"
             >
               <span className="mr-2 text-base">{skill.icon}</span>
               {skill.name}

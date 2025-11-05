@@ -5,6 +5,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("Home");
   const [scrolled, setScrolled] = useState(false);
+  const [scrollOpacity, setScrollOpacity] = useState(0.8);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -27,17 +28,22 @@ const Navbar = () => {
       id: 4,
       name: "Experience",
       href: "#experience",
-      icon: "fas fa-briefcase ",
+      icon: "fas fa-briefcase",
     },
-    { id: 4, name: "Contact", href: "#contact", icon: "fas fa-envelope" },
+    { id: 5, name: "Contact", href: "#contact", icon: "fas fa-envelope" },
   ];
 
   // Scroll detection for navbar background and active link
   useEffect(() => {
     const handleScroll = () => {
-      // Check if scrolled for background opacity
-      const isScrolled = window.scrollY > 10;
+      const scrollY = window.scrollY;
+      const isScrolled = scrollY > 10;
       setScrolled(isScrolled);
+
+      // Calculate opacity based on scroll position
+      // More scroll = more opaque (less transparent)
+      const newOpacity = Math.min(0.95, 0.8 + (scrollY / 500) * 0.15);
+      setScrollOpacity(newOpacity);
 
       const sections = navLinks.map((link) => {
         const section = document.querySelector(link.href);
@@ -49,7 +55,6 @@ const Navbar = () => {
         };
       });
 
-      // Find the section currently in view
       const currentSection = sections.find((section) => {
         if (section.element) {
           const rect = section.element.getBoundingClientRect();
@@ -58,7 +63,6 @@ const Navbar = () => {
         return false;
       });
 
-      // If no section is in the middle of viewport, find the one closest to the top
       if (!currentSection) {
         const closestSection = sections.reduce(
           (closest, section) => {
@@ -73,14 +77,12 @@ const Navbar = () => {
           },
           { id: activeLink, distance: Infinity }
         );
-
         setActiveLink(closestSection.id);
       } else {
         setActiveLink(currentSection.id);
       }
     };
 
-    // Throttle scroll events for better performance
     let ticking = false;
     const throttledScroll = () => {
       if (!ticking) {
@@ -93,8 +95,6 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", throttledScroll);
-
-    // Initial check on mount
     handleScroll();
 
     return () => {
@@ -102,10 +102,8 @@ const Navbar = () => {
     };
   }, [activeLink, navLinks]);
 
-  // Smooth scroll function
   const smoothScroll = (href) => {
     if (href === "#hero") {
-      // Scroll to top for home/hero
       window.scrollTo({
         top: 0,
         behavior: "smooth",
@@ -114,7 +112,7 @@ const Navbar = () => {
       const element = document.querySelector(href);
       if (element) {
         const offsetTop =
-          element.getBoundingClientRect().top + window.pageYOffset - 80; // Adjust for navbar height
+          element.getBoundingClientRect().top + window.pageYOffset - 80;
         window.scrollTo({
           top: offsetTop,
           behavior: "smooth",
@@ -131,20 +129,20 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`text-[#ccd6f6] shadow-lg fixed w-full z-50 border-b border-[#112240] transition-all duration-300 ${
-        scrolled
-          ? "bg-[#0a192f]/90 backdrop-blur-md"
-          : "bg-[#0a192f]/70 backdrop-blur-sm"
-      }`}
+      className={`text-[#A0A0A0] shadow-lg fixed w-full z-50 border-b border-[#1C1C1C] transition-all duration-300`}
+      style={{
+        backgroundColor: `rgba(14, 14, 14, ${scrollOpacity})`,
+        backdropFilter: "blur(10px)",
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <a
             href="#hero"
             onClick={(e) => handleNavClick(e, { name: "Home", href: "#hero" })}
-            className="text-xl font-bold bg-gradient-to-r from-[#ff6b35] to-[#ff8c61] bg-clip-text text-transparent hover:from-[#ff8c61] hover:to-[#ffa07a] transition-all duration-300"
+            className="text-xl font-bold text-[#FFFFFF] hover:text-[#C5A15B] transition-all duration-300 font-mono"
           >
-            <span className="font-mono">{`> ANTHONY`}</span>
+            {`> ANTHONY`}
           </a>
 
           {/* Hamburger Menu (Mobile) */}
@@ -152,8 +150,8 @@ const Navbar = () => {
             <button
               onClick={toggleMenu}
               type="button"
-              className={`inline-flex items-center justify-center p-2 rounded-md text-[#8892b0] hover:text-[#ff6b35] focus:outline-none transition duration-300 ${
-                scrolled ? "hover:bg-[#112240]/50" : "hover:bg-[#112240]/30"
+              className={`inline-flex items-center justify-center p-2 rounded-md text-[#A0A0A0] hover:text-[#C5A15B] focus:outline-none transition duration-300 ${
+                scrolled ? "hover:bg-[#1C1C1C]/50" : "hover:bg-[#1C1C1C]/30"
               }`}
             >
               <svg
@@ -192,8 +190,8 @@ const Navbar = () => {
                 onClick={(e) => handleNavClick(e, link)}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 border-b-2 ${
                   activeLink === link.name
-                    ? "text-[#ff6b35] border-[#ff6b35] bg-[#112240]/50"
-                    : "text-[#ccd6f6] border-transparent hover:text-[#ff6b35] hover:border-[#ff6b35] hover:bg-[#112240]/30"
+                    ? "text-[#C5A15B] border-[#C5A15B] bg-[#1C1C1C]/50"
+                    : "text-[#A0A0A0] border-transparent hover:text-[#C5A15B] hover:border-[#C5A15B] hover:bg-[#1C1C1C]/30"
                 }`}
               >
                 <i className={`${link.icon} mr-2`}></i>
@@ -212,7 +210,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="sm:hidden bg-[#112240]/95 backdrop-blur-md border-t border-[#233554]"
+            className="sm:hidden bg-[#1C1C1C]/95 backdrop-blur-md border-t border-[#1C1C1C]"
           >
             <div className="px-2 pt-2 pb-4 space-y-2">
               {navLinks.map((link) => (
@@ -222,8 +220,8 @@ const Navbar = () => {
                   onClick={(e) => handleNavClick(e, link)}
                   className={`block px-4 py-3 rounded-md text-base font-medium transition-all duration-300 ${
                     activeLink === link.name
-                      ? "text-[#ff6b35] bg-[#0a192f]/50 border-l-4 border-[#ff6b35]"
-                      : "text-[#ccd6f6] hover:text-[#ff6b35] hover:bg-[#0a192f]/30"
+                      ? "text-[#C5A15B] bg-[#0E0E0E]/50 border-l-4 border-[#C5A15B]"
+                      : "text-[#A0A0A0] hover:text-[#C5A15B] hover:bg-[#0E0E0E]/30"
                   }`}
                 >
                   <i className={`${link.icon} mr-3`}></i>

@@ -54,10 +54,13 @@ const TypingEffect = () => {
   return (
     <motion.span
       key={roles[index]}
-      className="mt-3 block text-xl sm:text-2xl lg:text-3xl font-semibold bg-[#ff6b35]  bg-clip-text text-transparent"
+      className="mt-3 block text-xl sm:text-2xl lg:text-3xl font-semibold text-[#C5A15B]"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
     >
       {roles[index].substring(0, subIndex)}
-      <span className="animate-pulse">|</span>
+      <span className="animate-pulse text-[#C5A15B]">|</span>
     </motion.span>
   );
 };
