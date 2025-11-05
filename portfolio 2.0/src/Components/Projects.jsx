@@ -99,7 +99,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-16 bg-[#0E0E0E] relative overflow-hidden"
+      className="py-20 bg-[#0E0E0E] relative overflow-hidden"
     >
       {/* Combined Grid and Circle Pattern Background */}
       <BackgroundPattern />
