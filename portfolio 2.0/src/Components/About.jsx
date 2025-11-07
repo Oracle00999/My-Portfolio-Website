@@ -158,8 +158,8 @@ const About = () => {
         <div className="absolute inset-0 bg-radial-gradient(at center, transparent 0%, #0E0E0E 70%)" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="grid items-center grid-cols-1 gap-16 md:grid-cols-2">
           {/* Left Column: Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -171,23 +171,25 @@ const About = () => {
               About Me
             </h2>
             <p className="mt-4 text-lg text-[#A0A0A0] leading-relaxed">
-              Hi, I'm Chibuike, a passionate full-stack developer with a
-              background in computer science. I thrive on building sleek,
-              responsive, and user-friendly applications that work seamlessly
-              from the front end to the back end. My journey has been shaped by
-              hard work and resilience, especially during my time in the ALX
-              Frontend Program and my continued growth in backend development
-              with Node.js, Express, and databases like MongoDB and SQL. These
-              experiences taught me perseverance, problem-solving, and the value
-              of continuous learning.
+              Hi, I'm Chibuike — a dedicated full-stack developer with a
+              background in computer science. I specialize in building
+              responsive, efficient, and user-focused web applications that
+              create real value. My journey began through self-learning,
+              exploring the fundamentals of web development and honing my skills
+              through practice and projects. Later, the ALX Frontend Program
+              deepened my expertise and discipline, paving the way for my
+              continued growth in back-end technologies like Node.js, Express,
+              MongoDB, and SQL. These experiences strengthened my
+              problem-solving mindset and passion for clean, scalable code.
             </p>
+
             <p className="mt-4 text-lg text-[#A0A0A0] leading-relaxed">
-              When I'm not immersed in coding, you'll find me exploring my other
-              passions: gaming, football, and indulging in delicious meals.
-              These hobbies keep me balanced and energized, fueling my
-              creativity for tackling complex software challenges. I'm always
-              eager to learn new technologies and push the boundaries of what's
-              possible in web development.
+              I value teamwork, adaptability, and continuous learning —
+              qualities that help me thrive in fast-paced development
+              environments. When I’m not coding, I enjoy gaming, football, and
+              exploring good food — all of which keep me creative and balanced.
+              I’m driven by the goal of building impactful software that merges
+              technical excellence with great user experience.
             </p>
 
             {/* Certification Link */}
@@ -221,7 +223,7 @@ const About = () => {
               <h3 className="text-2xl font-semibold text-[#FFFFFF] mb-6">
                 My Skills
               </h3>
-              <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+              <div className="flex flex-wrap justify-center gap-3 md:justify-start">
                 {skills.map((skill, index) => (
                   <motion.span
                     key={index}
@@ -248,17 +250,17 @@ const About = () => {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="hidden md:flex justify-center items-center"
+            className="items-center justify-center hidden md:flex"
           >
             <div className="relative">
               {/* Main Circle */}
-              <div className="w-80 h-80 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
+              <div className="relative flex items-center justify-center overflow-hidden rounded-full shadow-2xl w-80 h-80">
                 {/* Profile Image */}
                 <div className="relative z-10 w-76 h-76 rounded-full overflow-hidden border-4 border-[#C5A15B] shadow-xl">
                   <img
                     src={porfolioimg}
                     alt="Anthony's Portfolio"
-                    className="w-full h-full object-cover"
+                    className="object-cover w-full h-full"
                   />
                 </div>
               </div>
