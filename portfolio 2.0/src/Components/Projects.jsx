@@ -5,6 +5,7 @@ import LandingPagePics from "../assets/landingpage.jpg";
 import BlogAppPic from "../assets/nodejsblog.png";
 import figma from "../assets/figma.png";
 import Aether from "../assets/aether.png";
+import AI from "../assets/ai.png";
 
 // Project data
 const projects = [
@@ -17,6 +18,23 @@ const projects = [
     demoLink: "https://aetherclothing.vercel.app/",
     githubLink: "https://github.com/Oracle00999/Aether.git",
     image: Aether,
+  },
+  {
+    id: 5,
+    title: "Briefly AI",
+    description:
+      "An AI-powered content summarization web application that leverages OpenAI's GPT-3.5-turbo model to generate concise summaries from user-provided text. it offers a seamless user experience for quick content digestion.",
+    technologies: [
+      "React.js",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "openAI",
+    ],
+    demoLink: "https://content-summarizer-frontend.vercel.app/",
+    githubLink:
+      "https://github.com/Oracle00999/content-summarizer-frontend.git",
+    image: AI,
   },
   {
     id: 4,
@@ -104,7 +122,7 @@ const Projects = () => {
       {/* Combined Grid and Circle Pattern Background */}
       <BackgroundPattern />
 
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="relative z-10 px-4 mx-auto max-w-8xl sm:px-6 lg:px-8">
         {/* Title */}
         <motion.h2
           initial={{ opacity: 0, y: -50 }}
@@ -121,7 +139,7 @@ const Projects = () => {
         {/* Horizontal Scroll */}
         <div
           ref={scrollRef}
-          className="flex space-x-8 overflow-x-auto scrollbar-hide scroll-smooth py-4 px-2"
+          className="flex px-2 py-4 space-x-8 overflow-x-auto scrollbar-hide scroll-smooth"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {projects.map((project) => (
@@ -235,20 +253,20 @@ const ProjectCard = ({ project }) => (
       <img
         src={project.image}
         alt={project.title}
-        className="w-full h-48 sm:h-56 md:h-60 object-cover group-hover:scale-105 transition-transform duration-500"
+        className="object-cover w-full h-48 transition-transform duration-500 sm:h-56 md:h-60 group-hover:scale-105"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1C] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     </div>
 
     {/* Project Content */}
-    <div className="p-6 flex flex-col h-full">
+    <div className="flex flex-col h-full p-6">
       <h3 className="text-xl sm:text-2xl font-bold mb-3 text-[#FFFFFF] group-hover:text-[#C5A15B] transition-colors duration-300">
         {project.title}
       </h3>
       <ReadMore text={project.description} maxChars={100} />
 
       {/* Technologies */}
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 mt-4">
         {project.technologies.map((tech, index) => (
           <motion.span
             key={index}
@@ -263,7 +281,7 @@ const ProjectCard = ({ project }) => (
       </div>
 
       {/* Links */}
-      <div className="mt-6 flex flex-col sm:flex-row gap-4">
+      <div className="flex flex-col gap-4 mt-6 sm:flex-row">
         <motion.a
           href={project.demoLink}
           target="_blank"
@@ -291,7 +309,7 @@ const ProjectCard = ({ project }) => (
 
 // Project Counter Component
 const ProjectCounter = ({ count }) => (
-  <div className="text-center mt-8">
+  <div className="mt-8 text-center">
     <span className="text-[#A0A0A0] text-sm">
       {count} {count === 1 ? "Project" : "Projects"}
     </span>
