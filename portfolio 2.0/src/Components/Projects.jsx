@@ -1,14 +1,33 @@
-import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import PropTypes from "prop-types";
+import { FiArrowUpRight, FiGithub } from "react-icons/fi";
 import movieDatabasePic from "../assets/moviedatabase.png";
-import LandingPagePics from "../assets/landingpage.jpg";
 import BlogAppPic from "../assets/nodejsblog.png";
 import figma from "../assets/figma.png";
 import Aether from "../assets/aether.png";
 import AI from "../assets/ai.png";
+import Pingbase from "../assets/pingbase.png";
 
 // Project data
 const projects = [
+  {
+    id: 6,
+    title: "Pingbase",
+    description:
+      "A lightweight API monitoring platform for tracking uptime, latency, incidents, and webhook alerts. It supports workspaces, scheduled and manual checks, Google and GitHub authentication, and a clean dashboard for monitoring APIs and websites.",
+    technologies: [
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Prisma",
+      "Redis",
+      "BullMQ",
+      "Zod",
+    ],
+    demoLink: "https://pingbase-inky.vercel.app/",
+    githubLink: "https://github.com/Oracle00999/API-Monitoring-Platform.git",
+    image: Pingbase,
+  },
   {
     id: 2,
     title: "Aether — Minimalist Fashion Landing Page",
@@ -80,240 +99,163 @@ const projects = [
   },
 ];
 
-// ReadMore Component
-const ReadMore = ({ text, maxChars = 180 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  if (text.length <= maxChars) {
-    return <p className="mt-2 text-[#A0A0A0] leading-relaxed">{text}</p>;
-  }
-
-  return (
-    <p className="mt-2 text-[#A0A0A0] leading-relaxed">
-      {isExpanded ? text : `${text.substring(0, maxChars)}... `}
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="text-[#C5A15B] hover:text-[#D4AF37] font-medium transition duration-300 ml-1"
-      >
-        {isExpanded ? "Read less" : "Read more"}
-      </button>
-    </p>
-  );
-};
-
-// Projects Component
 const Projects = () => {
-  const scrollRef = useRef(null);
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  };
 
-  const scroll = (direction) => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -400 : 400,
-        behavior: "smooth",
-      });
-    }
+  const cardVariants = {
+    hidden: { opacity: 0, y: 24 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
   };
 
   return (
-    <section
-      id="projects"
-      className="py-20 bg-[#0E0E0E] relative overflow-hidden"
-    >
-      {/* Combined Grid and Circle Pattern Background */}
-      <BackgroundPattern />
-
-      <div className="relative z-10 px-4 mx-auto max-w-8xl sm:px-6 lg:px-8">
-        {/* Title */}
-        <motion.h2
-          initial={{ opacity: 0, y: -50 }}
+    <section id="projects" className="bg-[#0E0E0E] py-20 sm:py-24">
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl sm:text-5xl font-bold text-[#FFFFFF] text-center mb-16"
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-2xl mb-12 sm:mb-16"
         >
-          My Projects
-        </motion.h2>
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#C5A15B]">
+            Selected work
+          </p>
+          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            Projects I&apos;ve built
+          </h2>
+          <p className="mt-5 text-base leading-7 text-[#A0A0A0] sm:text-lg">
+            A collection of web experiences built with thoughtful interfaces,
+            responsive layouts, and reliable modern tools.
+          </p>
+        </motion.div>
 
-        {/* Scroll Buttons */}
-        <ScrollButtons onScroll={scroll} />
-
-        {/* Horizontal Scroll */}
-        <div
-          ref={scrollRef}
-          className="flex px-2 py-4 space-x-8 overflow-x-auto scrollbar-hide scroll-smooth"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.08 }}
+          className="grid gap-6 md:grid-cols-2"
         >
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={index}
+              variants={cardVariants}
+            />
           ))}
-        </div>
-
-        {/* Project Counter */}
-        <ProjectCounter count={projects.length} />
+        </motion.div>
       </div>
-
-      {/* Custom Scrollbar Hide */}
-      <style jsx>{`
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </section>
   );
 };
 
-// Background Pattern Component
-const BackgroundPattern = () => (
-  <>
-    <div
-      className="absolute inset-0 opacity-24"
-      style={{
-        backgroundImage: `
-                    linear-gradient(#1C1C1C 1px, transparent 1px),
-                    linear-gradient(90deg, #1C1C1C 1px, transparent 1px)
-                `,
-        backgroundSize: "50px 50px",
-        backgroundPosition: "center center",
-      }}
-    />
-    <div
-      className="absolute inset-0 opacity-15"
-      style={{
-        backgroundImage: `
-                    radial-gradient(circle at 20% 80%, #1C1C1C 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, #1C1C1C 0%, transparent 50%),
-                    radial-gradient(circle at 40% 40%, #1C1C1C 0%, transparent 50%)
-                `,
-        backgroundSize: "400px 400px, 300px 300px, 500px 500px",
-        backgroundPosition: "10% 10%, 90% 90%, 50% 50%",
-      }}
-    />
-    <div className="absolute inset-0 bg-radial-gradient(at center, transparent 0%, #0E0E0E 70%)" />
-  </>
-);
-
-// Scroll Buttons Component
-const ScrollButtons = ({ onScroll }) => (
-  <div className="hidden sm:block">
-    <button
-      onClick={() => onScroll("left")}
-      className="absolute left-4 top-1/2 -translate-y-1/2 bg-[#1C1C1C] text-[#C5A15B] p-3 rounded-full hover:bg-[#C5A15B] hover:text-[#0E0E0E] border-2 border-[#C5A15B] shadow-2xl z-10 transition-all duration-300 transform hover:scale-110"
-      aria-label="Scroll left"
-    >
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M15 19l-7-7 7-7"
-        />
-      </svg>
-    </button>
-    <button
-      onClick={() => onScroll("right")}
-      className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#1C1C1C] text-[#C5A15B] p-3 rounded-full hover:bg-[#C5A15B] hover:text-[#0E0E0E] border-2 border-[#C5A15B] shadow-2xl z-10 transition-all duration-300 transform hover:scale-110"
-      aria-label="Scroll right"
-    >
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M9 5l7 7-7 7"
-        />
-      </svg>
-    </button>
-  </div>
-);
-
-// Project Card Component
-const ProjectCard = ({ project }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6 }}
-    whileHover={{ y: -5 }}
-    className="w-[320px] sm:w-[360px] md:w-[380px] lg:w-[420px] flex-shrink-0 bg-[#1C1C1C] rounded-2xl shadow-2xl overflow-hidden border border-[#2A2A2A] hover:border-[#C5A15B] transition-all duration-300 group"
+const ProjectCard = ({ project, index, variants }) => (
+  <motion.article
+    variants={variants}
+    className="group overflow-hidden rounded-2xl border border-white/10 bg-[#151515] transition-colors duration-300 hover:border-[#C5A15B]/60"
   >
-    {/* Project Image */}
-    <div className="relative overflow-hidden">
+    <a
+      href={project.demoLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block overflow-hidden"
+      aria-label={`View ${project.title} live`}
+    >
       <img
         src={project.image}
-        alt={project.title}
-        className="object-cover w-full h-48 transition-transform duration-500 sm:h-56 md:h-60 group-hover:scale-105"
+        alt={`${project.title} preview`}
+        className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+        loading="lazy"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1C] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-    </div>
+    </a>
 
-    {/* Project Content */}
-    <div className="flex flex-col h-full p-6">
-      <h3 className="text-xl sm:text-2xl font-bold mb-3 text-[#FFFFFF] group-hover:text-[#C5A15B] transition-colors duration-300">
-        {project.title}
-      </h3>
-      <ReadMore text={project.description} maxChars={100} />
+    <div className="p-6 sm:p-7">
+      <div className="flex items-start justify-between gap-4 mb-4">
+        <div>
+          <span className="mb-2 block text-xs font-medium tracking-[0.2em] text-[#C5A15B]">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <h3 className="text-xl font-semibold text-white transition-colors duration-300 group-hover:text-[#C5A15B] sm:text-2xl">
+            {project.title}
+          </h3>
+        </div>
 
-      {/* Technologies */}
-      <div className="flex flex-wrap gap-2 mt-4">
+        <div className="flex gap-2 shrink-0">
+          <ProjectLink
+            href={project.githubLink}
+            label={`View ${project.title} source code`}
+          >
+            <FiGithub size={18} />
+          </ProjectLink>
+          <ProjectLink
+            href={project.demoLink}
+            label={`Open ${project.title} live site`}
+          >
+            <FiArrowUpRight size={19} />
+          </ProjectLink>
+        </div>
+      </div>
+
+      <p className="leading-7 text-[#A0A0A0]">{project.description}</p>
+
+      <div className="flex flex-wrap gap-2 mt-6">
         {project.technologies.map((tech, index) => (
-          <motion.span
-            key={index}
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-            className="px-3 py-1 bg-[#0E0E0E] text-[#A0A0A0] rounded-full text-xs sm:text-sm font-medium border border-[#2A2A2A] hover:border-[#C5A15B] hover:text-[#C5A15B] transition-colors duration-300"
+          <span
+            key={`${project.id}-${tech}-${index}`}
+            className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium text-[#B8B8B8]"
           >
             {tech}
-          </motion.span>
+          </span>
         ))}
       </div>
-
-      {/* Links */}
-      <div className="flex flex-col gap-4 mt-6 sm:flex-row">
-        <motion.a
-          href={project.demoLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="w-full sm:flex-1 px-4 py-2 bg-[#C5A15B] text-[#0E0E0E] font-semibold rounded-lg hover:bg-[#D4AF37] text-center transition-all duration-300 shadow-lg hover:shadow-xl"
-        >
-          Live Demo
-        </motion.a>
-        <motion.a
-          href={project.githubLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="w-full sm:flex-1 px-4 py-2 border-2 border-[#C5A15B] text-[#C5A15B] font-semibold rounded-lg hover:bg-[#C5A15B] hover:text-[#0E0E0E] text-center transition-all duration-300"
-        >
-          GitHub
-        </motion.a>
-      </div>
     </div>
-  </motion.div>
+  </motion.article>
 );
 
-// Project Counter Component
-const ProjectCounter = ({ count }) => (
-  <div className="mt-8 text-center">
-    <span className="text-[#A0A0A0] text-sm">
-      {count} {count === 1 ? "Project" : "Projects"}
-    </span>
-  </div>
+const ProjectLink = ({ href, label, children }) => (
+  <motion.a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={label}
+    whileHover={{ y: -2 }}
+    whileTap={{ scale: 0.95 }}
+    className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-[#B8B8B8] transition-colors duration-300 hover:border-[#C5A15B] hover:bg-[#C5A15B] hover:text-[#0E0E0E]"
+  >
+    {children}
+  </motion.a>
 );
+
+ProjectCard.propTypes = {
+  project: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    technologies: PropTypes.arrayOf(PropTypes.string).isRequired,
+    demoLink: PropTypes.string.isRequired,
+    githubLink: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
+  index: PropTypes.number.isRequired,
+  variants: PropTypes.object.isRequired,
+};
+
+ProjectLink.propTypes = {
+  href: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 export default Projects;
