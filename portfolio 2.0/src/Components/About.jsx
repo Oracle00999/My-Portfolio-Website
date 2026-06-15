@@ -1,17 +1,10 @@
-import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { FiLayers, FiLayout, FiServer } from "react-icons/fi";
 import porfolioimg from "../assets/img.png";
 
 const About = () => {
+  const shouldReduceMotion = useReducedMotion();
   const skills = [
-    {
-      name: "HTML",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
-    },
-    {
-      name: "CSS",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
-    },
     {
       name: "JavaScript",
       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
@@ -25,15 +18,7 @@ const About = () => {
       logo: "https://cdn.simpleicons.org/tailwindcss/06B6D4",
     },
     {
-      name: "Git",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-    },
-    {
-      name: "Responsive Design",
-      logo: "https://img.icons8.com/?size=512&id=22180&format=png",
-    },
-    {
-      name: "Nodejs",
+      name: "Node.js",
       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
     },
     {
@@ -45,10 +30,88 @@ const About = () => {
       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
     },
     {
-      name: "MySql",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+      name: "PostgreSQL",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
     },
   ];
+
+  const strengths = [
+    {
+      title: "Frontend",
+      description:
+        "Responsive, accessible interfaces built with React and thoughtful interaction design.",
+      icon: FiLayout,
+    },
+    {
+      title: "Backend",
+      description:
+        "Reliable APIs, authentication flows, databases, and scalable server-side logic.",
+      icon: FiServer,
+    },
+    {
+      title: "Engineering Approach",
+      description:
+        "Clean code, practical problem-solving, collaboration, and continuous improvement.",
+      icon: FiLayers,
+    },
+  ];
+
+  const textReveal = {
+    hidden: {
+      opacity: 0,
+      y: shouldReduceMotion ? 0 : 28,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
+  };
+
+  const glowingTextReveal = {
+    hidden: {
+      ...textReveal.hidden,
+      textShadow: "0 0 0 rgba(197, 161, 91, 0)",
+      filter: "drop-shadow(0 0 0 rgba(197, 161, 91, 0))",
+    },
+    visible: {
+      ...textReveal.visible,
+      textShadow: shouldReduceMotion
+        ? "0 0 0 rgba(197, 161, 91, 0)"
+        : [
+            "0 0 0 rgba(197, 161, 91, 0)",
+            "0 0 18px rgba(197, 161, 91, 0.95)",
+            "0 0 4px rgba(197, 161, 91, 0.18)",
+          ],
+      filter: shouldReduceMotion
+        ? "drop-shadow(0 0 0 rgba(197, 161, 91, 0))"
+        : [
+            "drop-shadow(0 0 0 rgba(197, 161, 91, 0))",
+            "drop-shadow(0 0 10px rgba(197, 161, 91, 0.7))",
+            "drop-shadow(0 0 2px rgba(197, 161, 91, 0.12))",
+          ],
+    },
+  };
+
+  const textViewport = {
+    once: false,
+    amount: 0.25,
+    margin: "-8% 0px -8% 0px",
+  };
+
+  const revealTransition = {
+    duration: shouldReduceMotion ? 0.2 : 0.55,
+    ease: "easeOut",
+    textShadow: {
+      duration: shouldReduceMotion ? 0.2 : 1.4,
+      times: [0, 0.35, 1],
+      ease: "easeOut",
+    },
+    filter: {
+      duration: shouldReduceMotion ? 0.2 : 1.4,
+      times: [0, 0.35, 1],
+      ease: "easeOut",
+    },
+  };
 
   // SVG Icons for the floating elements
   const TechIcons = {
@@ -161,39 +224,95 @@ const About = () => {
       <div className="relative z-10 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="grid items-center grid-cols-1 gap-16 md:grid-cols-2">
           {/* Left Column: Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center md:text-left"
-          >
-            <h2 className="text-4xl sm:text-5xl font-bold text-[#FFFFFF] mb-6">
+          <div className="text-center md:text-left">
+            <motion.h2
+              variants={glowingTextReveal}
+              initial="hidden"
+              whileInView="visible"
+              viewport={textViewport}
+              transition={revealTransition}
+              className="text-4xl sm:text-5xl font-bold text-[#FFFFFF] mb-6"
+            >
               About Me
-            </h2>
-            <p className="mt-4 text-lg text-[#A0A0A0] leading-relaxed">
-              Hi, I'm Chibuike — a dedicated full-stack developer with a
-              background in computer science. I specialize in building
-              responsive, efficient, and user-focused web applications that
-              create real value. My journey began through self-learning,
-              exploring the fundamentals of web development and honing my skills
-              through practice and projects. Later, the ALX Frontend Program
-              deepened my expertise and discipline, paving the way for my
-              continued growth in back-end technologies like Node.js, Express,
-              MongoDB, and SQL. These experiences strengthened my
-              problem-solving mindset and passion for clean, scalable code.
-            </p>
+            </motion.h2>
+            <motion.p
+              variants={glowingTextReveal}
+              initial="hidden"
+              whileInView="visible"
+              viewport={textViewport}
+              transition={revealTransition}
+              className="mt-4 text-lg text-[#A0A0A0] leading-relaxed"
+            >
+              Hi, I&apos;m Chibuike — a full-stack developer with a computer
+              science background. I build responsive web applications from
+              polished interfaces to dependable APIs, with a focus on useful
+              products, clean code, and strong user experience.
+            </motion.p>
 
-            <p className="mt-4 text-lg text-[#A0A0A0] leading-relaxed">
-              I value teamwork, adaptability, and continuous learning —
-              qualities that help me thrive in fast-paced development
-              environments. When I’m not coding, I enjoy gaming, football, and
-              exploring good food — all of which keep me creative and balanced.
-              I’m driven by the goal of building impactful software that merges
-              technical excellence with great user experience.
-            </p>
+            <motion.div
+              variants={textReveal}
+              initial="hidden"
+              whileInView="visible"
+              viewport={textViewport}
+              transition={revealTransition}
+              className="mt-8 grid gap-4 sm:grid-cols-3"
+            >
+              {strengths.map((strength, index) => {
+                const Icon = strength.icon;
+
+                return (
+                  <motion.article
+                    key={strength.title}
+                    initial={{
+                      opacity: 0,
+                      y: shouldReduceMotion ? 0 : 18,
+                      boxShadow: "0 0 0 rgba(197, 161, 91, 0)",
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      y: 0,
+                      boxShadow: shouldReduceMotion
+                        ? "0 0 0 rgba(197, 161, 91, 0)"
+                        : [
+                            "0 0 0 rgba(197, 161, 91, 0)",
+                            "0 0 20px rgba(197, 161, 91, 0.25)",
+                            "0 0 4px rgba(197, 161, 91, 0.06)",
+                          ],
+                    }}
+                    viewport={{ once: false, amount: 0.45 }}
+                    transition={{
+                      duration: shouldReduceMotion ? 0.2 : 0.65,
+                      delay: shouldReduceMotion ? 0 : index * 0.08,
+                      ease: "easeOut",
+                    }}
+                    whileHover={
+                      shouldReduceMotion ? undefined : { y: -4, scale: 1.01 }
+                    }
+                    className="rounded-2xl border border-white/10 bg-[#171717]/90 p-5 text-left transition-colors duration-300 hover:border-[#C5A15B]/50"
+                  >
+                    <div className="mb-4 grid h-10 w-10 place-items-center rounded-xl bg-[#C5A15B]/10 text-[#C5A15B]">
+                      <Icon size={20} />
+                    </div>
+                    <h3 className="font-semibold text-white">
+                      {strength.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-[#A0A0A0]">
+                      {strength.description}
+                    </p>
+                  </motion.article>
+                );
+              })}
+            </motion.div>
 
             {/* Certification Link */}
-            <div className="mt-8">
+            <motion.div
+              variants={textReveal}
+              initial="hidden"
+              whileInView="visible"
+              viewport={textViewport}
+              transition={revealTransition}
+              className="mt-8"
+            >
               <a
                 href="https://intranet.alxswe.com/certificates/fHXCP6z2BN"
                 target="_blank"
@@ -216,21 +335,49 @@ const About = () => {
                   />
                 </svg>
               </a>
-            </div>
+            </motion.div>
 
             {/* Skills Section */}
             <div className="mt-12">
-              <h3 className="text-2xl font-semibold text-[#FFFFFF] mb-6">
-                My Skills
-              </h3>
+              <motion.h3
+                variants={glowingTextReveal}
+                initial="hidden"
+                whileInView="visible"
+                viewport={textViewport}
+                transition={revealTransition}
+                className="text-2xl font-semibold text-[#FFFFFF] mb-6"
+              >
+                Core Stack
+              </motion.h3>
               <div className="flex flex-wrap justify-center gap-3 md:justify-start">
                 {skills.map((skill, index) => (
                   <motion.span
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.08 }}
-                    whileHover={{ scale: 1.05, y: -2 }}
+                    initial={{
+                      opacity: 0,
+                      y: shouldReduceMotion ? 0 : 20,
+                      boxShadow: "0 0 0 rgba(197, 161, 91, 0)",
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      y: 0,
+                      boxShadow: shouldReduceMotion
+                        ? "0 0 0 rgba(197, 161, 91, 0)"
+                        : [
+                            "0 0 0 rgba(197, 161, 91, 0)",
+                            "0 0 18px rgba(197, 161, 91, 0.45)",
+                            "0 0 4px rgba(197, 161, 91, 0.08)",
+                          ],
+                    }}
+                    viewport={{ once: false, amount: 0.4 }}
+                    transition={{
+                      duration: shouldReduceMotion ? 0.2 : 0.75,
+                      delay: shouldReduceMotion ? 0 : index * 0.08,
+                      ease: "easeOut",
+                    }}
+                    whileHover={
+                      shouldReduceMotion ? undefined : { scale: 1.05, y: -2 }
+                    }
                     className="flex items-center gap-2 px-4 py-3 bg-[#1C1C1C] border border-[#2A2A2A] text-[#A0A0A0] rounded-full text-sm font-medium hover:border-[#C5A15B] hover:text-[#C5A15B] transition-all duration-300 shadow-md"
                   >
                     <img
@@ -243,13 +390,19 @@ const About = () => {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column: Visual Element */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{
+              opacity: 0,
+              x: shouldReduceMotion ? 0 : 50,
+            }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{
+              duration: shouldReduceMotion ? 0.2 : 0.8,
+              delay: shouldReduceMotion ? 0 : 0.2,
+            }}
             className="items-center justify-center hidden md:flex"
           >
             <div className="relative">
@@ -267,7 +420,7 @@ const About = () => {
 
               {/* Floating Elements with proper SVGs */}
               <motion.div
-                animate={{ y: [0, -15, 0] }}
+                animate={shouldReduceMotion ? undefined : { y: [0, -15, 0] }}
                 transition={{ duration: 4, repeat: Infinity }}
                 className="absolute -top-6 -right-6 w-20 h-20 bg-[#1C1C1C] rounded-full flex items-center justify-center shadow-lg border border-[#2A2A2A]"
               >
@@ -275,7 +428,7 @@ const About = () => {
               </motion.div>
 
               <motion.div
-                animate={{ y: [0, 15, 0] }}
+                animate={shouldReduceMotion ? undefined : { y: [0, 15, 0] }}
                 transition={{ duration: 4, repeat: Infinity, delay: 1 }}
                 className="absolute -bottom-8 -left-8 w-24 h-24 bg-[#1C1C1C] rounded-full flex items-center justify-center shadow-lg border border-[#2A2A2A]"
               >
@@ -283,7 +436,7 @@ const About = () => {
               </motion.div>
 
               <motion.div
-                animate={{ y: [0, -10, 0] }}
+                animate={shouldReduceMotion ? undefined : { y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 2 }}
                 className="absolute top-1/2 -right-12 w-16 h-16 bg-[#1C1C1C] rounded-full flex items-center justify-center shadow-lg border border-[#2A2A2A]"
               >
@@ -291,7 +444,7 @@ const About = () => {
               </motion.div>
 
               <motion.div
-                animate={{ y: [0, 12, 0] }}
+                animate={shouldReduceMotion ? undefined : { y: [0, 12, 0] }}
                 transition={{ duration: 3.5, repeat: Infinity, delay: 1.5 }}
                 className="absolute top-1/4 -left-12 w-14 h-14 bg-[#1C1C1C] rounded-full flex items-center justify-center shadow-lg border border-[#2A2A2A]"
               >

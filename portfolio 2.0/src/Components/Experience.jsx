@@ -1,5 +1,10 @@
-import React from "react";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+} from "framer-motion";
 import {
   FiBriefcase,
   FiCalendar,
@@ -8,6 +13,18 @@ import {
 } from "react-icons/fi";
 
 const Experience = () => {
+  const timelineRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 75%", "end 35%"],
+  });
+  const timelineProgress = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 24,
+    restDelta: 0.001,
+  });
+
   const experiences = [
     {
       id: 1,
@@ -61,19 +78,45 @@ const Experience = () => {
     },
   ];
 
-  const container = {
-    hidden: { opacity: 0 },
+  const item = {
+    hidden: (index) => ({
+      opacity: 0,
+      x: shouldReduceMotion ? 0 : index % 2 === 0 ? 48 : -48,
+      y: shouldReduceMotion ? 0 : 14,
+    }),
     show: {
       opacity: 1,
+      x: 0,
+      y: 0,
       transition: {
-        staggerChildren: 0.2,
+        duration: shouldReduceMotion ? 0.2 : 0.65,
+        ease: "easeOut",
       },
     },
   };
 
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  const dot = {
+    hidden: {
+      opacity: 0,
+      scale: shouldReduceMotion ? 1 : 0.45,
+      boxShadow: "0 0 0 0 rgba(197, 161, 91, 0)",
+    },
+    show: {
+      opacity: 1,
+      scale: shouldReduceMotion ? 1 : [0.45, 1.55, 1],
+      boxShadow: shouldReduceMotion
+        ? "0 0 0 0 rgba(197, 161, 91, 0)"
+        : [
+            "0 0 0 0 rgba(197, 161, 91, 0)",
+            "0 0 0 10px rgba(197, 161, 91, 0.18)",
+            "0 0 0 0 rgba(197, 161, 91, 0)",
+          ],
+      transition: {
+        duration: shouldReduceMotion ? 0.2 : 0.75,
+        delay: shouldReduceMotion ? 0 : 0.18,
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
@@ -133,26 +176,40 @@ const Experience = () => {
         </motion.div>
 
         {/* Experience Timeline */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="relative"
-        >
-          {/* Timeline Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#C5A15B] via-[#D4AF37] to-[#C5A15B] opacity-30 transform -translate-x-1/2 hidden md:block"></div>
+        <div ref={timelineRef} className="relative">
+          {/* Timeline Track */}
+          <div className="absolute left-1/2 top-0 bottom-0 hidden w-0.5 -translate-x-1/2 bg-white/10 md:block" />
+          <div
+            aria-hidden="true"
+            className="absolute left-1/2 top-0 bottom-0 hidden w-0.5 -translate-x-1/2 md:block"
+          >
+            <motion.div
+              className="h-full w-full origin-top bg-gradient-to-b from-[#C5A15B] via-[#D4AF37] to-[#C5A15B] shadow-[0_0_14px_rgba(197,161,91,0.45)]"
+              style={{
+                scaleY: shouldReduceMotion ? 1 : timelineProgress,
+              }}
+            />
+          </div>
 
           {experiences.map((experience, index) => (
             <motion.div
               key={experience.id}
+              custom={index}
               variants={item}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.28 }}
               className={`relative flex flex-col md:flex-row ${
                 index % 2 === 0 ? "md:flex-row-reverse" : ""
               } mb-12 md:mb-16`}
             >
               {/* Timeline Dot */}
-              <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-[#C5A15B] rounded-full border-4 border-[#0E0E0E] transform -translate-x-1/2 z-10 hidden md:block"></div>
+              <div className="absolute left-1/2 z-10 hidden -translate-x-1/2 md:block">
+                <motion.div
+                  variants={dot}
+                  className="h-4 w-4 rounded-full border-4 border-[#0E0E0E] bg-[#C5A15B]"
+                />
+              </div>
 
               {/* Content Card */}
               <div
@@ -186,8 +243,12 @@ const Experience = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[#A0A0A0] hover:text-[#C5A15B] transition-colors duration-300"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
+                        whileHover={
+                          shouldReduceMotion ? undefined : { scale: 1.1 }
+                        }
+                        whileTap={
+                          shouldReduceMotion ? undefined : { scale: 0.95 }
+                        }
                       >
                         <FiExternalLink size={18} />
                       </motion.a>
@@ -242,7 +303,7 @@ const Experience = () => {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Call to Action */}
         <motion.div
@@ -257,11 +318,11 @@ const Experience = () => {
           <motion.a
             href="#contact"
             className="inline-flex items-center px-8 py-4 bg-[#C5A15B] text-[#0E0E0E] font-bold rounded-lg hover:bg-[#D4AF37] hover:shadow-2xl hover:shadow-[#C5A15B]/30 transform hover:-translate-y-1 transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={shouldReduceMotion ? undefined : { scale: 1.05 }}
+            whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
           >
             <FiBriefcase className="mr-2" />
-            Let's Work Together
+            Let&apos;s Work Together
           </motion.a>
         </motion.div>
       </div>

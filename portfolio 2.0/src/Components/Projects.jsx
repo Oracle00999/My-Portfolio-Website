@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import PropTypes from "prop-types";
 import { FiArrowUpRight, FiGithub } from "react-icons/fi";
 import movieDatabasePic from "../assets/moviedatabase.png";
@@ -100,6 +100,8 @@ const projects = [
 ];
 
 const Projects = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   const containerVariants = {
     hidden: {},
     visible: {
@@ -153,6 +155,7 @@ const Projects = () => {
               project={project}
               index={index}
               variants={cardVariants}
+              shouldReduceMotion={shouldReduceMotion}
             />
           ))}
         </motion.div>
@@ -161,77 +164,127 @@ const Projects = () => {
   );
 };
 
-const ProjectCard = ({ project, index, variants }) => (
-  <motion.article
-    variants={variants}
-    className="group overflow-hidden rounded-2xl border border-white/10 bg-[#151515] transition-colors duration-300 hover:border-[#C5A15B]/60"
-  >
-    <a
-      href={project.demoLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block overflow-hidden"
-      aria-label={`View ${project.title} live`}
+const ProjectCard = ({ project, index, variants, shouldReduceMotion }) => {
+  const tagContainerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        delayChildren: shouldReduceMotion ? 0 : 0.12,
+        staggerChildren: shouldReduceMotion ? 0 : 0.055,
+      },
+    },
+  };
+
+  const tagVariants = {
+    hidden: {
+      opacity: 0,
+      y: shouldReduceMotion ? 0 : 10,
+      scale: shouldReduceMotion ? 1 : 0.96,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: shouldReduceMotion ? 0.15 : 0.32,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  return (
+    <motion.article
+      variants={variants}
+      whileHover={
+        shouldReduceMotion
+          ? undefined
+          : {
+              y: -8,
+              boxShadow: "0 18px 45px rgba(197, 161, 91, 0.16)",
+            }
+      }
+      transition={{ type: "spring", stiffness: 260, damping: 22 }}
+      className="group overflow-hidden rounded-2xl border border-white/10 bg-[#151515] transition-colors duration-300 hover:border-[#C5A15B]/70"
     >
-      <img
-        src={project.image}
-        alt={`${project.title} preview`}
-        className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-        loading="lazy"
-      />
-    </a>
-
-    <div className="p-6 sm:p-7">
-      <div className="flex items-start justify-between gap-4 mb-4">
-        <div>
-          <span className="mb-2 block text-xs font-medium tracking-[0.2em] text-[#C5A15B]">
-            {String(index + 1).padStart(2, "0")}
+      <a
+        href={project.demoLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group/image relative block overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#C5A15B]"
+        aria-label={`View ${project.title} live`}
+      >
+        <img
+          src={project.image}
+          alt={`${project.title} preview`}
+          className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover/image:scale-[1.055] group-focus-visible/image:scale-[1.055]"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 grid place-items-center bg-[#0E0E0E]/65 opacity-0 transition-opacity duration-300 group-hover/image:opacity-100 group-focus-visible/image:opacity-100">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#C5A15B]/70 bg-[#0E0E0E]/85 px-5 py-2.5 text-sm font-semibold text-[#C5A15B] shadow-[0_0_24px_rgba(197,161,91,0.22)]">
+            View project
+            <FiArrowUpRight size={17} />
           </span>
-          <h3 className="text-xl font-semibold text-white transition-colors duration-300 group-hover:text-[#C5A15B] sm:text-2xl">
-            {project.title}
-          </h3>
+        </div>
+      </a>
+
+      <div className="p-6 sm:p-7">
+        <div className="flex items-start justify-between gap-4 mb-4">
+          <div>
+            <span className="mb-2 block text-xs font-medium tracking-[0.2em] text-[#C5A15B]">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <h3 className="text-xl font-semibold text-white transition-colors duration-300 group-hover:text-[#C5A15B] sm:text-2xl">
+              {project.title}
+            </h3>
+          </div>
+
+          <div className="flex gap-2 shrink-0">
+            <ProjectLink
+              href={project.githubLink}
+              label={`View ${project.title} source code`}
+              shouldReduceMotion={shouldReduceMotion}
+            >
+              <FiGithub size={18} />
+            </ProjectLink>
+            <ProjectLink
+              href={project.demoLink}
+              label={`Open ${project.title} live site`}
+              shouldReduceMotion={shouldReduceMotion}
+            >
+              <FiArrowUpRight size={19} />
+            </ProjectLink>
+          </div>
         </div>
 
-        <div className="flex gap-2 shrink-0">
-          <ProjectLink
-            href={project.githubLink}
-            label={`View ${project.title} source code`}
-          >
-            <FiGithub size={18} />
-          </ProjectLink>
-          <ProjectLink
-            href={project.demoLink}
-            label={`Open ${project.title} live site`}
-          >
-            <FiArrowUpRight size={19} />
-          </ProjectLink>
-        </div>
+        <p className="leading-7 text-[#A0A0A0]">{project.description}</p>
+
+        <motion.div
+          variants={tagContainerVariants}
+          className="flex flex-wrap gap-2 mt-6"
+        >
+          {project.technologies.map((tech, techIndex) => (
+            <motion.span
+              key={`${project.id}-${tech}-${techIndex}`}
+              variants={tagVariants}
+              className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium text-[#B8B8B8] transition-colors duration-300 group-hover:border-[#C5A15B]/25"
+            >
+              {tech}
+            </motion.span>
+          ))}
+        </motion.div>
       </div>
+    </motion.article>
+  );
+};
 
-      <p className="leading-7 text-[#A0A0A0]">{project.description}</p>
-
-      <div className="flex flex-wrap gap-2 mt-6">
-        {project.technologies.map((tech, index) => (
-          <span
-            key={`${project.id}-${tech}-${index}`}
-            className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium text-[#B8B8B8]"
-          >
-            {tech}
-          </span>
-        ))}
-      </div>
-    </div>
-  </motion.article>
-);
-
-const ProjectLink = ({ href, label, children }) => (
+const ProjectLink = ({ href, label, children, shouldReduceMotion }) => (
   <motion.a
     href={href}
     target="_blank"
     rel="noopener noreferrer"
     aria-label={label}
-    whileHover={{ y: -2 }}
-    whileTap={{ scale: 0.95 }}
+    whileHover={shouldReduceMotion ? undefined : { y: -2 }}
+    whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
     className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-[#B8B8B8] transition-colors duration-300 hover:border-[#C5A15B] hover:bg-[#C5A15B] hover:text-[#0E0E0E]"
   >
     {children}
@@ -250,12 +303,14 @@ ProjectCard.propTypes = {
   }).isRequired,
   index: PropTypes.number.isRequired,
   variants: PropTypes.object.isRequired,
+  shouldReduceMotion: PropTypes.bool.isRequired,
 };
 
 ProjectLink.propTypes = {
   href: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  shouldReduceMotion: PropTypes.bool.isRequired,
 };
 
 export default Projects;

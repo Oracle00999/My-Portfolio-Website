@@ -1,5 +1,4 @@
-import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   FiGithub,
   FiLinkedin,
@@ -9,6 +8,32 @@ import {
 } from "react-icons/fi";
 
 const Footer = () => {
+  const shouldReduceMotion = useReducedMotion();
+
+  const container = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.1,
+      },
+    },
+  };
+
+  const item = {
+    hidden: {
+      opacity: 0,
+      y: shouldReduceMotion ? 0 : 30,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0.2 : 0.55,
+        ease: "easeOut",
+      },
+    },
+  };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -60,33 +85,33 @@ const Footer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col items-center text-center">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.18 }}
+          className="flex flex-col items-center text-center"
+        >
           {/* Call-to-Action */}
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            variants={item}
             className="text-3xl sm:text-4xl font-bold text-[#FFFFFF] mb-6"
           >
-            Let's Build Something Amazing Together!
+            Let&apos;s Build Something Amazing Together!
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            variants={item}
             className="text-lg text-[#A0A0A0] mb-8 max-w-2xl"
           >
-            I'm always open to discussing new opportunities, creative projects,
-            and innovative ideas. Let's connect and create something
+            I&apos;m always open to discussing new opportunities, creative
+            projects, and innovative ideas. Let&apos;s connect and create something
             extraordinary!
           </motion.p>
 
           {/* Social Links */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            variants={item}
             className="flex space-x-6 mb-8"
           >
             {[
@@ -118,11 +143,10 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 aria-label={link.label}
                 className="p-4 rounded-full bg-[#1C1C1C] border border-[#2A2A2A] text-[#A0A0A0] hover:text-[#C5A15B] hover:border-[#C5A15B] transition-all duration-300 relative group"
-                whileHover={{
-                  scale: 1.1,
-                  y: -2,
-                }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={
+                  shouldReduceMotion ? undefined : { scale: 1.1, y: -2 }
+                }
+                whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
               >
                 {link.icon}
                 {/* Tooltip */}
@@ -135,9 +159,7 @@ const Footer = () => {
 
           {/* Contact Email */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            variants={item}
             className="mb-6"
           >
             <a
@@ -150,9 +172,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            variants={item}
             className="text-sm text-[#A0A0A0] mb-6"
           >
             <p>© {currentYear} Nwazota Chibuike. All rights reserved.</p>
@@ -161,23 +181,21 @@ const Footer = () => {
 
           {/* Back-to-Top Button */}
           <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            variants={item}
             onClick={scrollToTop}
             className="flex items-center space-x-2 px-6 py-3 bg-[#C5A15B] text-[#0E0E0E] font-semibold rounded-lg hover:bg-[#D4AF37] hover:shadow-2xl hover:shadow-[#C5A15B]/30 transform hover:-translate-y-1 transition-all duration-300 group"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={shouldReduceMotion ? undefined : { scale: 1.05 }}
+            whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
           >
             <motion.div
-              animate={{ y: [0, -3, 0] }}
+              animate={shouldReduceMotion ? undefined : { y: [0, -3, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
               <FiArrowUp />
             </motion.div>
             <span>Back to Top</span>
           </motion.button>
-        </div>
+        </motion.div>
       </div>
 
       {/* Decorative Bottom Border */}

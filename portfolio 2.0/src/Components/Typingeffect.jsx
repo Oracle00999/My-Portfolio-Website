@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
 const roles = [
   "A Frontend Developer",
@@ -19,26 +19,31 @@ const roles = [
 ];
 
 const TypingEffect = () => {
+  const shouldReduceMotion = useReducedMotion();
   const [index, setIndex] = useState(0); // which role
   const [subIndex, setSubIndex] = useState(0); // which character
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
+    if (shouldReduceMotion) {
+      return undefined;
+    }
+
     if (index === roles.length) {
       setIndex(0); // loop back
-      return;
+      return undefined;
     }
 
     if (subIndex === roles[index].length + 1 && !deleting) {
       // pause before deleting
-      setTimeout(() => setDeleting(true), 1000);
-      return;
+      const pauseTimeout = setTimeout(() => setDeleting(true), 1000);
+      return () => clearTimeout(pauseTimeout);
     }
 
     if (subIndex === 0 && deleting) {
       setDeleting(false);
       setIndex((prev) => (prev + 1) % roles.length);
-      return;
+      return undefined;
     }
 
     const timeout = setTimeout(
@@ -49,18 +54,20 @@ const TypingEffect = () => {
     );
 
     return () => clearTimeout(timeout);
-  }, [subIndex, index, deleting]);
+  }, [subIndex, index, deleting, shouldReduceMotion]);
 
   return (
     <motion.span
       key={roles[index]}
       className="mt-3 block text-xl sm:text-2xl lg:text-3xl font-semibold text-[#C5A15B]"
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: shouldReduceMotion ? 0.15 : 0.3 }}
     >
-      {roles[index].substring(0, subIndex)}
-      <span className="animate-pulse text-[#C5A15B]">|</span>
+      {shouldReduceMotion ? roles[2] : roles[index].substring(0, subIndex)}
+      {!shouldReduceMotion && (
+        <span className="animate-pulse text-[#C5A15B]">|</span>
+      )}
     </motion.span>
   );
 };
