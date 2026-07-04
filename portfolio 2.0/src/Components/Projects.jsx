@@ -2,14 +2,31 @@ import { motion, useReducedMotion } from "framer-motion";
 import PropTypes from "prop-types";
 import { FiArrowUpRight, FiGithub } from "react-icons/fi";
 import movieDatabasePic from "../assets/moviedatabase.png";
-import BlogAppPic from "../assets/nodejsblog.png";
 import figma from "../assets/figma.png";
 import Aether from "../assets/aether.png";
 import AI from "../assets/ai.png";
 import Pingbase from "../assets/pingbase.png";
+import ForexMarketAnalyzer from "../assets/forex-market-analyzer.png";
 
 // Project data
 const projects = [
+  {
+    id: 7,
+    title: "Forex Market Analyzer & Signal Tracking System",
+    description:
+      "A data-driven backend service that processes market data, applies technical analysis strategies, and generates actionable trading signals. It runs scheduled market scans, tracks signal lifecycles from pending to triggered to TP/SL, and sends real-time Telegram notifications.",
+    technologies: [
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Cron Jobs",
+      "REST APIs",
+      "Telegram Bot API",
+    ],
+    demoLink: "",
+    githubLink: "https://github.com/Oracle00999/myfx_signalGen.git",
+    image: ForexMarketAnalyzer,
+  },
   {
     id: 6,
     title: "Pingbase",
@@ -80,23 +97,23 @@ const projects = [
     githubLink: "https://github.com/Oracle00999/ALX_CAPSTONE_PROJECT.git",
     image: movieDatabasePic,
   },
-  {
-    id: 3,
-    title: "Dynamic Node.js Blog Application",
-    description:
-      "A full-featured blog platform built with Node.js, Express, MongoDB, and EJS. Supports creating, editing, and deleting posts with a secure admin dashboard. Includes session-based authentication, environment configuration, and deployment on Render.",
-    technologies: [
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "EJS",
-      "Mongoose",
-      "Render Deployment",
-    ],
-    demoLink: "https://nodejs-blog-app-23ky.onrender.com",
-    githubLink: "https://github.com/Oracle00999/Nodejs-blog-app",
-    image: BlogAppPic,
-  },
+  // {
+  //   id: 3,
+  //   title: "Dynamic Node.js Blog Application",
+  //   description:
+  //     "A full-featured blog platform built with Node.js, Express, MongoDB, and EJS. Supports creating, editing, and deleting posts with a secure admin dashboard. Includes session-based authentication, environment configuration, and deployment on Render.",
+  //   technologies: [
+  //     "Node.js",
+  //     "Express.js",
+  //     "MongoDB",
+  //     "EJS",
+  //     "Mongoose",
+  //     "Render Deployment",
+  //   ],
+  //   demoLink: "https://nodejs-blog-app-23ky.onrender.com",
+  //   githubLink: "https://github.com/Oracle00999/Nodejs-blog-app",
+  //   image: BlogAppPic,
+  // },
 ];
 
 const Projects = () => {
@@ -165,6 +182,11 @@ const Projects = () => {
 };
 
 const ProjectCard = ({ project, index, variants, shouldReduceMotion }) => {
+  const hasDemoLink = Boolean(project.demoLink);
+  const hasGithubLink = Boolean(project.githubLink);
+  const primaryLink = project.demoLink || project.githubLink;
+  const primaryLinkLabel = hasDemoLink ? "View project" : "View source";
+
   const tagContainerVariants = {
     hidden: {},
     visible: {
@@ -206,13 +228,7 @@ const ProjectCard = ({ project, index, variants, shouldReduceMotion }) => {
       transition={{ type: "spring", stiffness: 260, damping: 22 }}
       className="group overflow-hidden rounded-2xl border border-white/10 bg-[#151515] transition-colors duration-300 hover:border-[#C5A15B]/70"
     >
-      <a
-        href={project.demoLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group/image relative block overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#C5A15B]"
-        aria-label={`View ${project.title} live`}
-      >
+      <ImageShell project={project} primaryLink={primaryLink}>
         <img
           src={project.image}
           alt={`${project.title} preview`}
@@ -221,11 +237,12 @@ const ProjectCard = ({ project, index, variants, shouldReduceMotion }) => {
         />
         <div className="absolute inset-0 grid place-items-center bg-[#0E0E0E]/65 opacity-0 transition-opacity duration-300 group-hover/image:opacity-100 group-focus-visible/image:opacity-100">
           <span className="inline-flex items-center gap-2 rounded-full border border-[#C5A15B]/70 bg-[#0E0E0E]/85 px-5 py-2.5 text-sm font-semibold text-[#C5A15B] shadow-[0_0_24px_rgba(197,161,91,0.22)]">
-            View project
-            <FiArrowUpRight size={17} />
+            {primaryLinkLabel}
+            {hasDemoLink && <FiArrowUpRight size={17} />}
+            {!hasDemoLink && hasGithubLink && <FiGithub size={17} />}
           </span>
         </div>
-      </a>
+      </ImageShell>
 
       <div className="p-6 sm:p-7">
         <div className="flex items-start justify-between gap-4 mb-4">
@@ -238,22 +255,28 @@ const ProjectCard = ({ project, index, variants, shouldReduceMotion }) => {
             </h3>
           </div>
 
-          <div className="flex gap-2 shrink-0">
-            <ProjectLink
-              href={project.githubLink}
-              label={`View ${project.title} source code`}
-              shouldReduceMotion={shouldReduceMotion}
-            >
-              <FiGithub size={18} />
-            </ProjectLink>
-            <ProjectLink
-              href={project.demoLink}
-              label={`Open ${project.title} live site`}
-              shouldReduceMotion={shouldReduceMotion}
-            >
-              <FiArrowUpRight size={19} />
-            </ProjectLink>
-          </div>
+          {(hasGithubLink || hasDemoLink) && (
+            <div className="flex gap-2 shrink-0">
+              {hasGithubLink && (
+                <ProjectLink
+                  href={project.githubLink}
+                  label={`View ${project.title} source code`}
+                  shouldReduceMotion={shouldReduceMotion}
+                >
+                  <FiGithub size={18} />
+                </ProjectLink>
+              )}
+              {hasDemoLink && (
+                <ProjectLink
+                  href={project.demoLink}
+                  label={`Open ${project.title} live site`}
+                  shouldReduceMotion={shouldReduceMotion}
+                >
+                  <FiArrowUpRight size={19} />
+                </ProjectLink>
+              )}
+            </div>
+          )}
         </div>
 
         <p className="leading-7 text-[#A0A0A0]">{project.description}</p>
@@ -277,6 +300,27 @@ const ProjectCard = ({ project, index, variants, shouldReduceMotion }) => {
   );
 };
 
+const ImageShell = ({ project, primaryLink, children }) => {
+  const className =
+    "group/image relative block overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#C5A15B]";
+
+  if (!primaryLink) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <a
+      href={primaryLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+      aria-label={`View ${project.title}`}
+    >
+      {children}
+    </a>
+  );
+};
+
 const ProjectLink = ({ href, label, children, shouldReduceMotion }) => (
   <motion.a
     href={href}
@@ -297,13 +341,21 @@ ProjectCard.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     technologies: PropTypes.arrayOf(PropTypes.string).isRequired,
-    demoLink: PropTypes.string.isRequired,
-    githubLink: PropTypes.string.isRequired,
+    demoLink: PropTypes.string,
+    githubLink: PropTypes.string,
     image: PropTypes.string.isRequired,
   }).isRequired,
   index: PropTypes.number.isRequired,
   variants: PropTypes.object.isRequired,
   shouldReduceMotion: PropTypes.bool.isRequired,
+};
+
+ImageShell.propTypes = {
+  project: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+  primaryLink: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 ProjectLink.propTypes = {
