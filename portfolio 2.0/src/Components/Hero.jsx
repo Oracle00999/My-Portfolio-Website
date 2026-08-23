@@ -74,9 +74,7 @@ const Hero = () => {
         aria-hidden="true"
         className="absolute -inset-3"
         style={
-          shouldReduceMotion
-            ? undefined
-            : { x: backgroundX, y: backgroundY }
+          shouldReduceMotion ? undefined : { x: backgroundX, y: backgroundY }
         }
       >
         {/* Subtle Grid */}
@@ -110,7 +108,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-radial-gradient(at center, transparent 0%, #0E0E0E 70%)" />
       </motion.div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
+      <div className="relative z-10 grid items-center grid-cols-1 gap-12 mx-auto max-w-7xl md:grid-cols-2">
         {/* Left Column: Text Content */}
         <motion.div
           variants={contentVariants}
@@ -136,17 +134,16 @@ const Hero = () => {
           </motion.p>
           <motion.div variants={itemVariants}>
             <p className="mt-4 text-[#A0A0A0] leading-relaxed">
-              I build responsive web applications from polished React
-              interfaces to reliable Node.js APIs. My focus is creating fast,
-              practical products that solve real problems and feel great to
-              use.
+              I build responsive web applications from polished React interfaces
+              to reliable Node.js APIs. My focus is creating fast, practical
+              products that solve real problems and feel great to use.
             </p>
           </motion.div>
 
           {/* CTA Buttons */}
           <motion.div
             variants={itemVariants}
-            className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+            className="flex flex-col justify-center gap-4 mt-8 sm:flex-row md:justify-start"
           >
             <a
               href="#projects"
@@ -155,7 +152,7 @@ const Hero = () => {
               View My Work
             </a>
             <a
-              href="https://docs.google.com/document/d/1FTkw2KXjrGFSSHUAF656DbaVbNrCFHSVbEiqOY8LMuQ/edit?usp=sharing"
+              href="https://docs.google.com/document/d/1ZUgJedPNtaUVT0E0s_Y271LnR2n1RM3YoDdVjAJiOmo/edit?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3 border-2 border-[#C5A15B] text-[#C5A15B] font-semibold rounded-lg hover:bg-[#C5A15B] hover:text-[#0E0E0E] transform hover:-translate-y-1 transition-all duration-300 text-center"
@@ -167,7 +164,7 @@ const Hero = () => {
           {/* Social Links */}
           <motion.div
             variants={itemVariants}
-            className="mt-8 flex space-x-6 justify-center md:justify-start"
+            className="flex justify-center mt-8 space-x-6 md:justify-start"
           >
             {[
               {
@@ -213,7 +210,7 @@ const Hero = () => {
             delay: shouldReduceMotion ? 0 : 0.35,
             ease: "easeOut",
           }}
-          className="hidden md:flex justify-center items-center"
+          className="items-center justify-center hidden md:flex"
         >
           <motion.div
             className="relative"
@@ -222,13 +219,13 @@ const Hero = () => {
             }
           >
             {/* Main Circle */}
-            <div className="w-82 h-82 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
+            <div className="relative flex items-center justify-center overflow-hidden rounded-full shadow-2xl w-82 h-82">
               {/* Profile Image */}
               <div className="relative z-10 w-76 h-76 rounded-full overflow-hidden border-4 border-[#C5A15B] shadow-xl">
                 <img
                   src={portfolioImg}
                   alt="Anthony's Portfolio"
-                  className="w-full h-full object-cover"
+                  className="object-cover w-full h-full"
                 />
               </div>
             </div>
